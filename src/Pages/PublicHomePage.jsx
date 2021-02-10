@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
-import NavbarComponent from './NavbarComponent';
+import NavbarComponent from '../Components/NavbarComponent';
 
-export default class HomeComponent extends Component {
+export default class PublicHomePage extends Component {
   constructor(props) {
     super(props)
 

@@ -4,6 +4,8 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import '../Components/RegisterComponent.css';
 import NavbarComponent from './NavbarComponent';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 export default class RegisterComponent extends Component {
   constructor(props) {
@@ -13,7 +15,14 @@ export default class RegisterComponent extends Component {
       name: '',
       email: '',
       password: '',
-      confirm: '',
+      password_confirmation: '',
+      redirect: false,
+    }
+  }
+
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+      this.setState({ redirect: true })
     }
   }
 
@@ -36,7 +45,7 @@ export default class RegisterComponent extends Component {
   }
 
   handleConfirmPasswordChange = event => {
-    this.setState({ confirm: event.target.value }, () => {
+    this.setState({ password_confirmation: event.target.value }, () => {
       console.log(this.state);
     });
   }
@@ -44,9 +53,28 @@ export default class RegisterComponent extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log('inscription');
+
+    let bodyFormData = new FormData();
+    bodyFormData.set('name', this.state.name);
+    bodyFormData.set('email', this.state.email);
+    bodyFormData.set('password', this.state.password);
+    bodyFormData.set('password_confirmation', this.state.password);
+
+    axios.post('http://127.0.0.1:8000/api/register', bodyFormData)
+      .then(res => {
+        console.log(res.data)
+        localStorage.setItem('token', res.data.token);
+        this.setState({ redirect: true })
+      })
+      .catch(error => {
+        console.log(error.response)
+      })
   }
 
   render() {
+    if (this.state.redirect) {
+      return (<Redirect to="/" />)
+    }
     return (
       <>
         <NavbarComponent />
