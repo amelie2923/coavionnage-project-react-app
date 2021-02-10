@@ -6,6 +6,7 @@ import '../Components/LoginComponent.css';
 import NavbarComponent from './NavbarComponent';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { MDBContainer, MDBIcon, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody } from 'mdbreact';
 
 export default class LoginComponent extends Component {
   constructor(props) {
@@ -66,33 +67,58 @@ export default class LoginComponent extends Component {
       return (<Redirect to="/" />)
     }
     return (
-      <>
-        <NavbarComponent />
-        <Container className="main-container">
-          <h2 className="text-center">Connexion</h2>
-          <Form className="register-form" method="POST" onSubmit={this.handleSubmit}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Entrer votre mail" onChange={this.handleEmailChange} />
-              {/* <Form.Control.Feedback type="invalid">
-                Please choose an email.
-              </Form.Control.Feedback> */}
-              {this.state.errors && this.state.errors.email ? <div className="invalid-feedback">{this.state.errors.email}</div> : ''}
-            </Form.Group>
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Mot de passe</Form.Label>
-              <Form.Control type="password" placeholder="Mot de passe" onChange={this.handlePasswordChange} />
-              {this.state.errors && this.state.errors.password ? <div className="invalid-feedback">{this.state.errors.password}</div> : ''}
-            </Form.Group>
-            {/* <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Se souvenir de moi" />
-            </Form.Group> */}
-            <Button variant="primary" type="submit">
-              Me connecter
-            </Button>
-          </Form>
-        </Container >
-      </>
+      <MDBContainer>
+        <MDBRow className="d-flex align-items-center justify-content-center">
+          <MDBCol md="6">
+            <MDBCard>
+              <div className="header pt-3 purple-gradient">
+                <MDBRow className="d-flex justify-content-center">
+                  <h3 className="white-text mb-3 pt-3 font-weight-bold">
+                    Connexion
+                </h3>
+                </MDBRow>
+                <MDBRow className="mt-2 mb-3 d-flex justify-content-center">
+                  <a href="#!" className="fa-lg p-2 m-2 fb-ic">
+                    <MDBIcon fab icon="facebook-f" size="lg" className="white-text" />
+                  </a>
+                  <a href="#!" className="fa-lg p-2 m-2 gplus-ic">
+                    <MDBIcon fab icon="google" size="lg" className="white-text" />
+                  </a>
+                </MDBRow>
+              </div>
+              <MDBCardBody>
+                <form method="POST" onSubmit={this.handleSubmit}>
+                  <div className="grey-text">
+                    <MDBInput
+                      label="Votre email"
+                      icon="envelope"
+                      group
+                      type="email"
+                      validate
+                      error="wrong"
+                      success="right"
+                      onChange={this.handleEmailChange}
+                    />
+                    <MDBInput
+                      label="Votre mot de passe"
+                      icon="lock"
+                      group
+                      type="password"
+                      validate
+                      onChange={this.handlePasswordChange}
+                    />
+                  </div>
+                  <div className="text-center py-4 mt-3">
+                    <MDBBtn color="light-blue" type="submit">
+                      Se connecter
+                    </MDBBtn>
+                  </div>
+                </form>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     )
   }
 }

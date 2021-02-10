@@ -6,6 +6,7 @@ import {
 import PublicHomePage from '../Pages/PublicHomePage';
 import RegisterComponent from './RegisterComponent';
 import LoginComponent from './LoginComponent';
+import AssociationDashboardPage from '../Pages/AssociationDashboardPage';
 
 
 export class AppRouter extends Component {
@@ -15,6 +16,7 @@ export class AppRouter extends Component {
         <Route exact path="/" component={PublicHomePage} />
         <Route path="/register" component={RegisterComponent} />
         <Route path="/login" component={LoginComponent} />
+        <Route path="/asso-dashboard" component={AssociationDashboardPage} />
       </Switch>
     )
   }

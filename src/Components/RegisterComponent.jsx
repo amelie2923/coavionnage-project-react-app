@@ -6,6 +6,7 @@ import '../Components/RegisterComponent.css';
 import NavbarComponent from './NavbarComponent';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { MDBContainer, MDBIcon, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody } from 'mdbreact';
 
 export default class RegisterComponent extends Component {
   constructor(props) {
@@ -76,39 +77,78 @@ export default class RegisterComponent extends Component {
       return (<Redirect to="/" />)
     }
     return (
-      <>
-        <NavbarComponent />
-        <Container className="main-container">
-          <h2 className="text-center">Inscription</h2>
-          <Form className="register-form" method="POST" onSubmit={this.handleSubmit}>
-            <Form.Group controlId="formBasicName">
-              <Form.Label>Nom</Form.Label>
-              <Form.Control placeholder="Entrer votre nom" onChange={this.handleNameChange} />
-            </Form.Group>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Entrer votre mail" onChange={this.handleEmailChange} />
-              <Form.Text className="text-muted">
-                {/* We'll never share your email with anyone else. */}
-              </Form.Text>
-            </Form.Group>
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Mot de passe</Form.Label>
-              <Form.Control type="password" placeholder="Mot de passe" onChange={this.handlePasswordChange} />
-            </Form.Group>
-            <Form.Group controlId="formBasicConfirmPassword">
-              <Form.Label>Confirmation du mot de passe</Form.Label>
-              <Form.Control type="password" placeholder="Confirmer votre mot de passe" onChange={this.handleConfirmPasswordChange} />
-            </Form.Group>
-            {/* <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Se souvenir de moi" />
-            </Form.Group> */}
-            <Button variant="primary" type="submit">
-              M'inscrire
-              </Button>
-          </Form>
-        </Container >
-      </>
+      <MDBContainer>
+        <MDBRow className="d-flex align-middle justify-content-center">
+          <MDBCol md="6">
+            <MDBCard>
+              <div className="header pt-3 purple-gradient">
+                <MDBRow className="d-flex justify-content-center">
+                  <h3 className="white-text mb-3 pt-3 font-weight-bold">
+                    Inscription
+                </h3>
+                </MDBRow>
+                <MDBRow className="mt-2 mb-3 d-flex justify-content-center">
+                  <a href="#!" className="fa-lg p-2 m-2 fb-ic">
+                    <MDBIcon fab icon="facebook-f" size="lg" className="white-text" />
+                  </a>
+                  <a href="#!" className="fa-lg p-2 m-2 gplus-ic">
+                    <MDBIcon fab className="fa-google white-text fa-lg" />
+                  </a>
+                </MDBRow>
+              </div>
+              <MDBCardBody>
+                <form method="POST" onSubmit={this.handleSubmit}>
+                  <div className="grey-text">
+                    <MDBInput
+                      label="Votre nom"
+                      icon="user"
+                      group
+                      type="text"
+                      validate
+                      error="wrong"
+                      success="right"
+                      onChange={this.handleNameChange}
+                    />
+                    <MDBInput
+                      label="Votre email"
+                      icon="envelope"
+                      group
+                      type="email"
+                      validate
+                      error="wrong"
+                      success="right"
+                      onChange={this.handleEmailChange}
+                    />
+                    <MDBInput
+                      label="Votre mot de passe"
+                      icon="lock"
+                      group
+                      type="password"
+                      validate
+                      onChange={this.handlePasswordChange}
+                    />
+                    <MDBInput
+                      label="Confirmer votre mot de passe"
+                      icon="exclamation-triangle"
+                      group
+                      type="text"
+                      validate
+                      error="wrong"
+                      success="right"
+                      onChange={this.handleConfirmPasswordChange}
+                    />
+                  </div>
+                  <div className="text-center py-4 mt-3">
+                    <MDBBtn color="light-blue" type="submit">
+                      S'inscrire
+                    </MDBBtn>
+                  </div>
+                </form>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     )
   }
 }

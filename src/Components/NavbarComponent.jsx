@@ -38,7 +38,8 @@ export default class NavbarComponent extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              <Nav.Link href="#home">Accueil</Nav.Link>
+              <Nav.Link href="#link">Rechercher</Nav.Link>
+              <Nav.Link href="#link">Proposer un trajet</Nav.Link>
               {
                 localStorage.getItem('token')
                   ?
@@ -52,7 +53,6 @@ export default class NavbarComponent extends Component {
                     <Link className="nav-link" to="/register">Inscription</Link>
                   </>
               }
-              {/* <Nav.Link href="#link">Link</Nav.Link> */}
               {/* Uniquement si l'utilisateur est connecté */}
               {/* <NavDropdown title="Profil" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Créer une annonce</NavDropdown.Item>
