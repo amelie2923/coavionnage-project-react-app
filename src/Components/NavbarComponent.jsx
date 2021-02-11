@@ -5,6 +5,10 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+import {
+  MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
+  MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBInput
+} from "mdbreact";
 import axios from 'axios';
 import {
   Link,
@@ -17,6 +21,7 @@ export default class NavbarComponent extends Component {
 
     this.state = {
       redirect: false,
+      isOpen: false,
     }
   }
 
@@ -27,51 +32,82 @@ export default class NavbarComponent extends Component {
       localStorage.clear();
       this.setState({ redirect: true })
       console.log(res.data)
-    })
+    });
+  }
+
+  toggleCollapse = () => {
+    this.setState({ isOpen: !this.state.isOpen });
   }
 
   render() {
     return (
-      <>
-        <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#home">Coavionnage</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ml-auto">
-              <Nav.Link href="#link">Rechercher</Nav.Link>
-              <Nav.Link href="#link">Proposer un trajet</Nav.Link>
-              {
-                localStorage.getItem('token')
-                  ?
-                  <>
-                    <Link className="nav-link" to="/login">Poster une annonce</Link>
-                    <Button className="btn" onClick={() => this.handleLogout()}>Déconnexion</Button>
-                  </>
-                  :
-                  <>
-                    <Link className="nav-link" to="/login">Connexion</Link>
-                    <Link className="nav-link" to="/register">Inscription</Link>
-                  </>
-              }
-              {/* Uniquement si l'utilisateur est connecté */}
-              {/* <NavDropdown title="Profil" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Créer une annonce</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Mes annonces</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Mes alertes</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Mon profil</NavDropdown.Item>
-              </NavDropdown> */}
-            </Nav>
-            {/* <Form inline>
-              <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-              <Button variant="outline-success">Search</Button>
-            </Form> */}
-
-            {/* Uniquement si l'utilisateur est connecté */}
-            {/* <Button variant="danger">Déconnexion</Button> */}
-          </Navbar.Collapse>
-        </Navbar>
-      </>
+      <MDBNavbar color="blue-gradient" dark expand="md">
+        <MDBNavbarBrand>
+          <strong className="white-text">Coavionnage</strong>
+        </MDBNavbarBrand>
+        <MDBNavbarToggler onClick={this.toggleCollapse} />
+        <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+          <MDBNavbarNav left>
+            <MDBNavItem active>
+              <MDBNavLink to="#!">Rechercher</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink to="#!">Proposer un trajet</MDBNavLink>
+            </MDBNavItem>
+          </MDBNavbarNav>
+          {/* <MDBNavItem>
+              <MDBNavLink to="#!">Pricing</MDBNavLink>
+            </MDBNavItem> */}
+          {/* <MDBNavItem>
+              <MDBDropdown>
+                <MDBDropdownToggle nav caret>
+                  <div className="d-none d-md-inline">Dropdown</div>
+                </MDBDropdownToggle>
+                <MDBDropdownMenu className="dropdown-default">
+                  <MDBDropdownItem href="#!">Action</MDBDropdownItem>
+                  <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
+                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
+                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
+                </MDBDropdownMenu>
+              </MDBDropdown>
+            </MDBNavItem> */}
+          {/* </MDBNavbarNav> */}
+          {/* <MDBNavbarNav right> */}
+          {/* <MDBNavItem>
+              <MDBNavLink className="waves-effect waves-light" to="#!">
+                <MDBIcon fab icon="twitter" />
+              </MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink className="waves-effect waves-light" to="#!">
+                <MDBIcon fab icon="google-plus-g" />
+              </MDBNavLink>
+            </MDBNavItem> */}
+          <MDBNavbarNav right>
+            <MDBNavItem>
+              <MDBDropdown>
+                <MDBDropdownToggle nav caret>
+                  <MDBIcon icon="user" />
+                </MDBDropdownToggle>
+                <MDBDropdownMenu right className="dropdown-default">
+                  {
+                    localStorage.getItem('token')
+                      ?
+                      <>
+                        <MDBInput onClick={() => this.handleLogout()}>Déconnexion</MDBInput>
+                      </>
+                      :
+                      <>
+                        <MDBDropdownItem><Link to="/login">Connexion</Link></MDBDropdownItem>
+                        <MDBDropdownItem><Link to="/register">Inscription</Link></MDBDropdownItem>
+                      </>
+                  }
+                </MDBDropdownMenu>
+              </MDBDropdown>
+            </MDBNavItem>
+          </MDBNavbarNav>
+        </MDBCollapse>
+      </MDBNavbar >
     )
   }
 }

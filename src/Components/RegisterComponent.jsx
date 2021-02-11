@@ -78,10 +78,11 @@ export default class RegisterComponent extends Component {
     }
     return (
       <MDBContainer>
-        <MDBRow className="d-flex align-middle justify-content-center">
+        <MDBRow style={{ height: '100%', width: '100%', paddingTop: '9rem' }}
+          className='d-flex justify-content-center align-items-center'>
           <MDBCol md="6">
             <MDBCard>
-              <div className="header pt-3 purple-gradient">
+              <div className="header pt-3 blue-gradient">
                 <MDBRow className="d-flex justify-content-center">
                   <h3 className="white-text mb-3 pt-3 font-weight-bold">
                     Inscription
@@ -92,7 +93,7 @@ export default class RegisterComponent extends Component {
                     <MDBIcon fab icon="facebook-f" size="lg" className="white-text" />
                   </a>
                   <a href="#!" className="fa-lg p-2 m-2 gplus-ic">
-                    <MDBIcon fab className="fa-google white-text fa-lg" />
+                    <MDBIcon fab icon="google" className="fa-google white-text fa-lg" />
                   </a>
                 </MDBRow>
               </div>

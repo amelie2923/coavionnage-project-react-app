@@ -39,7 +39,6 @@ export default class LoginComponent extends Component {
   }
 
   handleSubmit = event => {
-
     event.preventDefault();
     console.log('connexion');
 
@@ -68,10 +67,11 @@ export default class LoginComponent extends Component {
     }
     return (
       <MDBContainer>
-        <MDBRow className="d-flex align-items-center justify-content-center">
+        <MDBRow style={{ height: '100%', width: '100%', paddingTop: '14rem' }}
+          className='d-flex justify-content-center align-items-center'>
           <MDBCol md="6">
             <MDBCard>
-              <div className="header pt-3 purple-gradient">
+              <div className="header pt-3 blue-gradient">
                 <MDBRow className="d-flex justify-content-center">
                   <h3 className="white-text mb-3 pt-3 font-weight-bold">
                     Connexion

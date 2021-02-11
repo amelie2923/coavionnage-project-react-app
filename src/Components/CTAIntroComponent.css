@@ -1,0 +1,8 @@
+#calltoaction .view {
+  min-height: 100vh !important;
+  height: unset !important;
+}
+
+.btn-purple {
+  color: #8672EF!important;
+}
