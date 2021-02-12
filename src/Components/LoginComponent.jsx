@@ -5,8 +5,8 @@ import Form from 'react-bootstrap/Form';
 import '../Components/LoginComponent.css';
 import NavbarComponent from './NavbarComponent';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
-import { MDBContainer, MDBIcon, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody } from 'mdbreact';
+import { Link, Redirect } from 'react-router-dom';
+import { MDBContainer, MDBIcon, MDBRow, MDBCol, MDBInput, MDBBtn, MDBLink, MDBCard, MDBCardBody } from 'mdbreact';
 
 export default class LoginComponent extends Component {
   constructor(props) {
@@ -107,11 +107,17 @@ export default class LoginComponent extends Component {
                       validate
                       onChange={this.handlePasswordChange}
                     />
+                    {/* <MDBLink to='/forgot-password'>
+                      Mot de passe oublié ?
+                    </MDBLink> */}
                   </div>
                   <div className="text-center py-4 mt-3">
                     <MDBBtn color="light-blue" type="submit">
                       Se connecter
                     </MDBBtn>
+                  </div>
+                  <div className="text-center py-4 mt-3">
+                    <Link to="/forgot-password">Mot de passe oublié ?</Link>
                   </div>
                 </form>
               </MDBCardBody>

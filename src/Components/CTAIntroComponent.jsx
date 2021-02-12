@@ -71,10 +71,10 @@ export default class CTAIntroComponent extends React.Component {
                   {/* Aider les animaux de La Réunion en proposant votre billet d'avion a une association qui s'occuperont du rapatriement ! C'est gratuit et vous n'avez rien à faire ! */}
                 </h5>
                 <MDBBtn rounded className='btn-light-blue'>
-                  <MDBIcon icon='user' className='mr-2 btn-light-blue' /> Voyageur : Proposer votre vol
+                  <MDBIcon icon='search' className='mr-2' /> Association : Rechercher un vol
                 </MDBBtn>
                 <MDBBtn outline color='light-blue' rounded>
-                  <MDBIcon icon='search' className='mr-2' /> Association : Rechercher un vol
+                  <MDBIcon icon='user' /> Voyageur : Proposer votre vol
                 </MDBBtn>
               </MDBCol>
             </MDBRow>
