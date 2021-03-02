@@ -81,7 +81,7 @@ export default class LoginComponent extends Component {
                   <a href="#!" className="fa-lg p-2 m-2 fb-ic">
                     <MDBIcon fab icon="facebook-f" size="lg" className="white-text" />
                   </a>
-                  <a href="#!" className="fa-lg p-2 m-2 gplus-ic">
+                  <a href="http://127.0.0.1:8000/auth/redirect/google" className="fa-lg p-2 m-2 gplus-ic">
                     <MDBIcon fab icon="google" size="lg" className="white-text" />
                   </a>
                 </MDBRow>
