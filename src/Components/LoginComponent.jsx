@@ -6,7 +6,7 @@ import '../Components/LoginComponent.css';
 import NavbarComponent from './NavbarComponent';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
-import { MDBContainer, MDBIcon, MDBRow, MDBCol, MDBInput, MDBBtn, MDBLink, MDBCard, MDBCardBody } from 'mdbreact';
+import { MDBContainer, MDBIcon, MDBRow, MDBCol, MDBInput, MDBBtn, MDBLink, MDBCard, MDBCardBody, MDBModalFooter } from 'mdbreact';
 
 export default class LoginComponent extends Component {
   constructor(props) {
@@ -67,7 +67,7 @@ export default class LoginComponent extends Component {
     }
     return (
       <MDBContainer>
-        <MDBRow style={{ height: '100%', width: '100%', paddingTop: '14rem' }}
+        <MDBRow style={{ height: '100%', width: '100%', paddingTop: '5rem' }}
           className='d-flex justify-content-center align-items-center'>
           <MDBCol md="6">
             <MDBCard>
@@ -76,14 +76,6 @@ export default class LoginComponent extends Component {
                   <h3 className="white-text mb-3 pt-3 font-weight-bold">
                     Connexion
                 </h3>
-                </MDBRow>
-                <MDBRow className="mt-2 mb-3 d-flex justify-content-center">
-                  <a href="#!" className="fa-lg p-2 m-2 fb-ic">
-                    <MDBIcon fab icon="facebook-f" size="lg" className="white-text" />
-                  </a>
-                  <a href="#!" className="fa-lg p-2 m-2 gplus-ic">
-                    <MDBIcon fab icon="google" size="lg" className="white-text" />
-                  </a>
                 </MDBRow>
               </div>
               <MDBCardBody>
@@ -112,7 +104,14 @@ export default class LoginComponent extends Component {
                     </MDBLink> */}
                   </div>
                   <div className="text-center py-4 mt-3">
-                    <MDBBtn color="light-blue" type="submit">
+                    {/* <MDBBtn color="light-blue" type="submit">
+                      Se connecter
+                    </MDBBtn> */}
+                    <MDBBtn
+                      type="button"
+                      gradient="blue"
+                      className="btn-block z-depth-1a rounded"
+                    >
                       Se connecter
                     </MDBBtn>
                   </div>
@@ -121,6 +120,33 @@ export default class LoginComponent extends Component {
                   </div>
                 </form>
               </MDBCardBody>
+              <p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">
+                ou se connecter avec :
+                  </p>
+              <div className="row my-3 d-flex justify-content-center">
+                <MDBBtn
+                  type="button"
+                  color="white"
+                  className="mr-md-3 z-depth-1a"
+                >
+                  <MDBIcon fab icon="facebook-f" className="blue-text text-center" />
+                </MDBBtn>
+                <MDBBtn
+                  type="button"
+                  color="white"
+                  className="z-depth-1a"
+                >
+                  <MDBIcon fab icon="google" className="blue-text" />
+                </MDBBtn>
+              </div>
+              <MDBModalFooter className="mx-5 pt-3 mb-1">
+                <p className="font-small grey-text d-flex justify-content-end">
+                  Pas encore membre ?
+                <a href="/register" className="blue-text ml-1">
+                    S'inscrire
+                </a>
+                </p>
+              </MDBModalFooter>
             </MDBCard>
           </MDBCol>
         </MDBRow>
