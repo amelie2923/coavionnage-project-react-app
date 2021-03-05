@@ -11,7 +11,7 @@ export default class AdsGalleryComponent extends Component {
   render() {
     return (
       <div className="container">
-        <div class="row d-flex justify-content-center">
+        <div className="row d-flex justify-content-center">
           <MDBCol md='4'>
             <MDBCard narrow>
               <MDBView cascade>
