@@ -14,38 +14,38 @@ export default class RegisterComponent extends Component {
       password: '',
       password_confirmation: '',
       redirect: false,
-    }
-  }
+    };
+  };
 
   componentDidMount() {
     if (localStorage.getItem('token')) {
       this.setState({ redirect: true })
-    }
-  }
+    };
+  };
 
   handleNameChange = event => {
     this.setState({ name: event.target.value }, () => {
       console.log(this.state);
     });
-  }
+  };
 
   handleEmailChange = event => {
     this.setState({ email: event.target.value }, () => {
       console.log(this.state);
     });
-  }
+  };
 
   handlePasswordChange = event => {
     this.setState({ password: event.target.value }, () => {
       console.log(this.state);
     });
-  }
+  };
 
   handleConfirmPasswordChange = event => {
     this.setState({ password_confirmation: event.target.value }, () => {
       console.log(this.state);
     });
-  }
+  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -66,12 +66,12 @@ export default class RegisterComponent extends Component {
       .catch(error => {
         console.log(error.response)
       })
-  }
+  };
 
   render() {
     if (this.state.redirect) {
       return (<Redirect to="/" />)
-    }
+    };
     return (
       <MDBContainer>
         <MDBRow style={{ height: '100%', width: '100%', paddingTop: '5rem' }}

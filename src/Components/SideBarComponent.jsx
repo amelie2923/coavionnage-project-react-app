@@ -3,25 +3,25 @@ import { MDBListGroup, MDBListGroupItem, MDBIcon } from 'mdbreact';
 import { NavLink } from 'react-router-dom';
 
 const SideBarComponent = () => {
-    return (
-        <div className="sidebar-fixed position-fixed">
-            <a href="#!" className="logo-wrapper waves-effect">
-                {/* <img alt="MDB React Logo" className="img-fluid" src={logo}/> */}
-            </a>
-            <MDBListGroup className="list-group-flush">
-                <NavLink exact={true} to="/asso-dashboard" activeClassName="activeClass">
-                    <MDBListGroupItem>
-                        <MDBIcon icon="chart-pie" className="mr-3"/>
-                        Mes annonces
-                    </MDBListGroupItem>
-                </NavLink>
-                <NavLink to="/profile" activeClassName="activeClass">
-                    <MDBListGroupItem>
-                        <MDBIcon icon="user" className="mr-3"/>
-                        Profile
-                    </MDBListGroupItem>
-                </NavLink>
-                {/* <NavLink to="/tables" activeClassName="activeClass">
+  return (
+    <div className="sidebar-fixed position-fixed">
+      <a href="#!" className="logo-wrapper waves-effect">
+        {/* <img alt="MDB React Logo" className="img-fluid" src={logo}/> */}
+      </a>
+      <MDBListGroup className="list-group-flush">
+        <NavLink exact={true} to="/asso-dashboard" activeClassName="activeClass">
+          <MDBListGroupItem>
+            <MDBIcon icon="chart-pie" className="mr-3" />
+              Mes annonces
+          </MDBListGroupItem>
+        </NavLink>
+        <NavLink to="/profile" activeClassName="activeClass">
+          <MDBListGroupItem>
+            <MDBIcon icon="user" className="mr-3" />
+              Profile
+          </MDBListGroupItem>
+        </NavLink>
+        {/* <NavLink to="/tables" activeClassName="activeClass">
                     <MDBListGroupItem>
                         <MDBIcon icon="table" className="mr-3"/>
                         Tables
@@ -39,9 +39,9 @@ const SideBarComponent = () => {
                         404
                     </MDBListGroupItem>
                 </NavLink> */}
-            </MDBListGroup>
-        </div>
-    );
+      </MDBListGroup>
+    </div>
+  );
 }
 
 export default SideBarComponent;

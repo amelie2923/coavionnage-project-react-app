@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Button from 'react-bootstrap/Button';
 import NavbarComponent from '../Components/NavbarComponent';
 import CTAIntroComponent from '../Components/CTAIntroComponent';
 import AdsGalleryComponent from '../Components/AdsGalleryComponent';
@@ -12,8 +10,8 @@ export default class PublicHomePage extends Component {
 
     this.state = {
 
-    }
-  }
+    };
+  };
 
   render() {
     return (

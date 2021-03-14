@@ -5,7 +5,7 @@ import TopNavigationComponent from '../Components/TopNavigationComponent';
 import SideBarComponent from '../Components/SideBarComponent';
 import AdsGalleryComponent from '../Components/AdsGalleryComponent';
 
-const AssociationDashboardPage =  () => {
+const AssociationDashboardPage = () => {
   return (
     <div className="flexible-content">
       <TopNavigationComponent />

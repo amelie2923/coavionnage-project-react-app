@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
 import {
   MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
   MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBInput
@@ -12,7 +6,6 @@ import {
 import axios from 'axios';
 import {
   Link,
-  Redirect
 } from "react-router-dom";
 
 export default class NavbarComponent extends Component {
@@ -23,7 +16,7 @@ export default class NavbarComponent extends Component {
       redirect: false,
       isOpen: false,
     }
-  }
+  };
 
   handleLogout = () => {
     const token = localStorage.getItem('token');
@@ -33,11 +26,11 @@ export default class NavbarComponent extends Component {
       this.setState({ redirect: true })
       console.log(res.data)
     });
-  }
+  };
 
   toggleCollapse = () => {
     this.setState({ isOpen: !this.state.isOpen });
-  }
+  };
 
   render() {
     return (
@@ -48,7 +41,7 @@ export default class NavbarComponent extends Component {
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           {/* <MDBNavbarNav right>
-            
+
           </MDBNavbarNav> */}
           <MDBNavbarNav right>
             <MDBNavItem active>
@@ -67,7 +60,7 @@ export default class NavbarComponent extends Component {
                     localStorage.getItem('token')
                       ?
                       <>
-                        <MDBInput onClick={() => this.handleLogout()}>Déconnexion</MDBInput>
+                        <MDBDropdownItem onClick={() => this.handleLogout()}>Déconnexion</MDBDropdownItem>
                       </>
                       :
                       <>

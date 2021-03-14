@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import { MDBContainer, MDBIcon, MDBRow, MDBCol, MDBInput, MDBBtn, MDBLink, MDBCard, MDBCardBody } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody } from 'mdbreact';
 
 
 export default class ForgotPasswordFormComponent extends Component {
@@ -12,13 +12,13 @@ export default class ForgotPasswordFormComponent extends Component {
       email: '',
       redirect: false,
     }
-  }
+  };
 
   handleEmail = event => {
     this.setState({ email: event.target.value }, () => {
       console.log(this.state);
     });
-  }
+  };
 
   handleForgotPassword = event => {
     console.log('ok')
@@ -39,7 +39,7 @@ export default class ForgotPasswordFormComponent extends Component {
           })
         }
       })
-  }
+  };
 
   render() {
     if (this.state.redirect) {
