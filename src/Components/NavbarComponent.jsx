@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-  MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBInput
+  MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon
 } from "mdbreact";
 import axios from 'axios';
 import {
@@ -19,7 +19,7 @@ export default class NavbarComponent extends Component {
   };
 
   handleLogout = () => {
-    const token = localStorage.getItem('token');
+    let token = localStorage.getItem('token');
     axios.post("http://127.0.0.1:8000/api/logout", [], { headers: { 'Authorization': 'Bearer ' + token } }).then(res => {
       localStorage.setItem('token', '');
       localStorage.clear();

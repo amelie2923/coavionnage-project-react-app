@@ -10,6 +10,8 @@ import AssociationDashboardPage from './Pages/AssociationDashboardPage';
 import ForgotPasswordPage from './Pages/ForgotPasswordPage';
 import PostAdComponent from './Components/PostAdComponent';
 import PurposeFlightFormComponent from './Components/PurposeFlightFormComponent';
+import AdComponent from './Components/AdComponent';
+import AuthenticationComponent from './Components/AuthenticationComponent';
 
 export class AppRouter extends Component {
   render() {
@@ -17,11 +19,13 @@ export class AppRouter extends Component {
       <Switch>
         <Route exact path="/" component={PublicHomePage} />
         <Route path="/register" component={RegisterPage} />
-        <Route path="/login" component={LoginPage} />
+        <Route exact path="/login" component={LoginPage} />
         <Route path="/asso-dashboard" component={AssociationDashboardPage} />
         <Route path="/forgot-password" component={ForgotPasswordPage} />
         <Route path="/ads/new" component={PostAdComponent} />
         <Route path="/planetickets/new" component={PurposeFlightFormComponent} />
+        <Route path="/ads/:id" component={AdComponent} />
+        <Route path="/login/:provider/:token" component={AuthenticationComponent} />
       </Switch>
     )
   }

@@ -51,11 +51,12 @@ export default class LoginComponent extends Component {
     })
       .then(res => {
         console.log(res.data)
-        localStorage.setItem('token', res.data.token);
+        // localStorage.setItem('token', res.data.token);
+        localStorage.setItem('token', res.data.api_token);
         this.setState({ redirect: true })
       })
       .catch(error => {
-        if (error.response.status === 422) {
+        if (error.response.status === 401) {
           this.setState({ errors: error.response.data.errors }, () => {
             console.log(this.state)
           })
@@ -79,14 +80,14 @@ export default class LoginComponent extends Component {
                     Connexion
                 </h3>
                 </MDBRow>
-                <MDBRow className="mt-2 mb-3 d-flex justify-content-center">
+                {/* <MDBRow className="mt-2 mb-3 d-flex justify-content-center">
                   <a href="#!" className="fa-lg p-2 m-2 fb-ic">
                     <MDBIcon fab icon="facebook-f" size="lg" className="white-text" />
                   </a>
                   <a href="http://127.0.0.1:8000/auth/redirect/google" className="fa-lg p-2 m-2 gplus-ic">
                     <MDBIcon fab icon="google" size="lg" className="white-text" />
                   </a>
-                </MDBRow>
+                </MDBRow> */}
               </div>
               <MDBCardBody>
                 <form method="POST" onSubmit={this.handleSubmit}>
@@ -142,10 +143,12 @@ export default class LoginComponent extends Component {
                   <MDBIcon fab icon="facebook-f" className="blue-text text-center" />
                 </MDBBtn>
                 <MDBBtn
+                  href="http://127.0.0.1:8000/auth/redirect/google"
                   type="button"
                   color="white"
                   className="z-depth-1a"
                 >
+                  {/* <a href="http://127.0.0.1:8000/auth/redirect/google" /> */}
                   <MDBIcon fab icon="google" className="blue-text" />
                 </MDBBtn>
               </div>

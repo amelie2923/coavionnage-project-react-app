@@ -79,7 +79,7 @@ export default class PostAdComponent extends Component {
     bodyFormData.set('company', this.state.company);
     bodyFormData.set('description', this.state.description);
 
-    axios.post('http://127.0.0.1:8000/api/ads/add', bodyFormData)
+    axios.post('http://127.0.0.1:8000/api/planetickets/add', bodyFormData)
       .then(res => {
         console.log(res.data)
       })

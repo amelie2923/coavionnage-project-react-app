@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../Components/RegisterComponent.css';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import { MDBContainer, MDBIcon, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody } from 'mdbreact';
+import { MDBContainer, MDBIcon, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody, MDBModalFooter } from 'mdbreact';
 
 export default class RegisterComponent extends Component {
   constructor(props) {
@@ -12,8 +12,9 @@ export default class RegisterComponent extends Component {
       name: '',
       email: '',
       password: '',
-      password_confirmation: '',
+      confirm_password: '',
       redirect: false,
+      errors: []
     };
   };
 
@@ -42,7 +43,7 @@ export default class RegisterComponent extends Component {
   };
 
   handleConfirmPasswordChange = event => {
-    this.setState({ password_confirmation: event.target.value }, () => {
+    this.setState({ confirm_password: event.target.value }, () => {
       console.log(this.state);
     });
   };
@@ -55,16 +56,21 @@ export default class RegisterComponent extends Component {
     bodyFormData.set('name', this.state.name);
     bodyFormData.set('email', this.state.email);
     bodyFormData.set('password', this.state.password);
-    bodyFormData.set('password_confirmation', this.state.password);
+    bodyFormData.set('confirm_password', this.state.password);
 
     axios.post('http://127.0.0.1:8000/api/register', bodyFormData)
       .then(res => {
         console.log(res.data)
-        localStorage.setItem('token', res.data.token);
+        // localStorage.setItem('token', res.data.token);
+        localStorage.setItem('token', res.data.api_token)
         this.setState({ redirect: true })
       })
       .catch(error => {
-        console.log(error.response)
+        // if (error.response.status === 401) {
+        //   this.setState({ errors: error.response.data.errors }, () => {
+        //     console.log(this.state)
+        //   })
+        // }
       })
   };
 
@@ -120,7 +126,7 @@ export default class RegisterComponent extends Component {
                       label="Confirmer votre mot de passe"
                       icon="exclamation-triangle"
                       group
-                      type="text"
+                      type="password"
                       validate
                       error="wrong"
                       success="right"
@@ -132,7 +138,7 @@ export default class RegisterComponent extends Component {
                       S'inscrire
                     </MDBBtn> */}
                     <MDBBtn
-                      type="button"
+                      type="submit"
                       gradient="blue"
                       className="btn-block z-depth-1a"
                     >
@@ -161,6 +167,14 @@ export default class RegisterComponent extends Component {
                   <MDBIcon fab icon="google" className="blue-text" />
                 </MDBBtn>
               </div>
+              <MDBModalFooter className="mx-5 pt-3 mb-1">
+                <p className="font-small grey-text d-flex justify-content-end">
+                  Déjà membre ?
+                <a href="/login" className="blue-text ml-1">
+                    Se connecter
+                </a>
+                </p>
+              </MDBModalFooter>
             </MDBCard>
           </MDBCol>
         </MDBRow>

@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import NavbarComponent from '../Components/NavbarComponent';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import axios from 'axios';
-import moment from 'moment';
+import { Redirect } from 'react-router-dom';
 // import DatePicker from 'react-datepicker';
 // import 'react-datepicker/dist/react-datepicker.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -39,6 +39,7 @@ export default class PurposeFlightFormComponent extends Component {
       description: '',
       image: '',
       date: '',
+      redirect: false,
       errors: [],
     };
   };
@@ -107,13 +108,20 @@ export default class PurposeFlightFormComponent extends Component {
     bodyFormData.set('image', this.state.image);
     bodyFormData.set('date', this.state.date);
 
-    axios.post('http://127.0.0.1:8000/api/planetickets/add', bodyFormData)
+    let headers = {
+      headers: {
+        'API-TOKEN': localStorage.getItem('token')
+      }
+    }
+
+    axios.post('http://127.0.0.1:8000/api/ads/add', bodyFormData, headers)
       .then(res => {
-        console.log(res.data)
+        this.setState({ redirect: true })
+        console.log(res)
       })
       .catch(error => {
         console.log('error');
-        if (error.response.status === 422) {
+        if (error.response.status === 401) {
           this.setState({ errors: error.response.data.errors }, () => {
             console.log(this.state)
           })
@@ -122,6 +130,10 @@ export default class PurposeFlightFormComponent extends Component {
   };
 
   render() {
+    //to do : change redirection link
+    if (this.state.redirect) {
+      return (<Redirect to="/" />)
+    }
     return (
       <>
         <NavbarComponent />
@@ -135,12 +147,6 @@ export default class PurposeFlightFormComponent extends Component {
                 <MDBInput label="Nom de l'animal" onChange={this.handleAnimalNameChange} group type="text" validate />
                 <MDBInput label="Type de l'animal" onChange={this.handleTypeSearch} group type="text" validate />
                 <p style={{ color: '#757575' }}>Date de départ :</p>
-                {/* <DatePicker
-                  selected={this.state.startDate}
-                  onChange={this.handleChange}
-                  name="startDate"
-                  dateFormat="MM/dd/yyyy"
-                /> */}
                 <input type="date" id="start" name="trip-start"
                   min="2021-01-01" onChange={this.handleDateChange} />
                 <MDBInput label="Ville de départ" onChange={this.handleDepartureCityChange} group type="text" validate />
