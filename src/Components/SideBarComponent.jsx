@@ -18,7 +18,7 @@ const SideBarComponent = () => {
         <NavLink to="/profile" activeClassName="activeClass">
           <MDBListGroupItem>
             <MDBIcon icon="user" className="mr-3" />
-              Profile
+              Profil
           </MDBListGroupItem>
         </NavLink>
         {/* <NavLink to="/tables" activeClassName="activeClass">

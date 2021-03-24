@@ -1,9 +1,8 @@
 import React from 'react';
-// import { MDBRow } from 'mdbreact';
 import '../Pages/AssociationDashboardPage.css';
 import TopNavigationComponent from '../Components/TopNavigationComponent';
 import SideBarComponent from '../Components/SideBarComponent';
-import AdsGalleryComponent from '../Components/AdsGalleryComponent';
+import TableAssoComponent from '../Components/TableAssoComponent';
 
 const AssociationDashboardPage = () => {
   return (
@@ -11,7 +10,9 @@ const AssociationDashboardPage = () => {
       <TopNavigationComponent />
       <SideBarComponent />
       <main id="content" className="p-5">
-        <AdsGalleryComponent />
+        <h2>Mes annonces</h2>
+        <TableAssoComponent />
+        {/* <AdsGalleryComponent /> */}
       </main>
       {/* <AdminCardSection1 />
       <ChartSection1 />

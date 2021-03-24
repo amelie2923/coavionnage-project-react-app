@@ -48,7 +48,7 @@ class TopNavigationComponent extends Component {
                             <a className="nav-link navbar-link" rel="noopener noreferrer" target="_blank" href="https://twitter.com/mdbootstrap"><MDBIcon fab icon="twitter" /></a>
                         </MDBNavItem> */}
             <MDBNavItem>
-              <a className="border border-light mr-1 nav-link Ripple-parent" rel="noopener noreferrer" href="/ads/new" target="_blank">
+              <a className="border border-light mr-1 nav-link Ripple-parent" rel="noopener noreferrer" href="/ads/new">
                 <MDBIcon icon="paw" className="mr-2" />Créer une annonce</a>
             </MDBNavItem>
           </MDBNavbarNav>

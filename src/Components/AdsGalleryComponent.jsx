@@ -30,7 +30,6 @@ export default class AdsGalleryComponent extends Component {
   render() {
     return (
       <div className="container">
-        <h1 className="mt-5 mb-5 text-center">Ils recherchent un vol</h1>
         <div className="row d-flex justify-content-center">
           {this.state.ads.map((ad) =>
             <MDBCol md='4'>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NavbarComponent from '../Components/NavbarComponent';
+// import NavbarComponent from '../Components/NavbarComponent';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import axios from 'axios';
 // import DatePicker from 'react-datepicker';
@@ -23,7 +23,7 @@ import axios from 'axios';
 //   "Air Austral"
 // ];
 
-export default class PostAdComponent extends Component {
+export default class PurposeFlightComponent extends Component {
   constructor(props) {
     super(props)
 
@@ -96,7 +96,6 @@ export default class PostAdComponent extends Component {
   render() {
     return (
       <>
-        <NavbarComponent />
         <MDBContainer>
           <MDBRow>
             <MDBCol>

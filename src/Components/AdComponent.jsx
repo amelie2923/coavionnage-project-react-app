@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { MDBBadge, MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBCol, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBIcon } from 'mdbreact';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import NavbarComponent from './NavbarComponent';
+// import NavbarComponent from './NavbarComponent';
 import LoaderComponent from './LoaderComponent';
+import DayJS from 'react-dayjs';
 
 export default class AdComponent extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       redirect: false,
       ad: {},
-      // favorite: false,
+      favorite: false,
     };
   };
 
@@ -26,12 +27,14 @@ export default class AdComponent extends Component {
 
       axios.get(`http://127.0.0.1:8000/api/ads/${id}`, headers)
         .then(res => {
-          this.setState({ ad: res.data })
+          // this.setState({ ad: res.data })
+          this.setState({ ad: res.data }, () => {
+            this.checkFavorite()
+          })
         })
         .catch(error => {
           console.log(error.response)
         })
-      console.log(this.props.match.params.id)
     } else {
       this.setState({ redirect: true })
     }
@@ -73,10 +76,9 @@ export default class AdComponent extends Component {
     if (this.state.redirect) {
       return (<Redirect to="/" />)
     };
-    console.log(this.state.ad.image)
+    console.log(this.state.ad)
     return (
       <>
-        <NavbarComponent />
         <MDBCarousel
           activeItem={1}
           length={1}
@@ -114,8 +116,8 @@ export default class AdComponent extends Component {
                       </h5>
                       <MDBCardText>Recherche un vol pour: {this.state.ad.arrival_city}</MDBCardText>
                       <MDBCardText>Au départ de: {this.state.ad.departure_city}</MDBCardText>
-                      <MDBCardText>Date: à partir du {this.state.ad.date}</MDBCardText>
-                      <MDBCardText>Description<br></br>{this.state.ad.description}</MDBCardText>
+                      <MDBCardText>Date: à partir du <DayJS format="DD-MM-YYYY">{this.state.ad.date}</DayJS></MDBCardText>
+                      <MDBCardText><strong>Description</strong><br></br>{this.state.ad.description}</MDBCardText>
                     </MDBCardBody>
                   </MDBCard>
                   {/* <p>Scannez mon code avec votre smartphone pour me proposer une place!</p> */}
@@ -140,7 +142,7 @@ export default class AdComponent extends Component {
                 </MDBCol>
               </div>
               :
-              <div class="d-flex justify-content-center">
+              <div className="d-flex justify-content-center">
                 <LoaderComponent />
               </div>
           }

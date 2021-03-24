@@ -5,28 +5,8 @@ import React, { Component } from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-// import DatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
-// const arrivalCities = [
-//   "Paris",
-//   "Marseille"
-// ];
-
-// const animalType = [
-//   "Chien",
-//   "Chat"
-// ]
-
-// const companies = [
-//   "FrenchBee",
-//   "Corsair",
-//   "Air France",
-//   "Air Austral"
-// ];
-
-export default class PostAdComponent extends Component {
+export default class EditAdComponent extends Component {
   constructor(props) {
     super(props)
 
@@ -46,19 +26,45 @@ export default class PostAdComponent extends Component {
   };
 
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/api/typesearchs/')
-      .then(res => {
-        let typeSearchs = res.data.map(typesearch => {
-          return { value: typesearch.id, display: typesearch.name }
+    if (localStorage.getItem('token')) {
+      let id = this.props.match.params.id
+      let headers = {
+        headers: {
+          'API-TOKEN': localStorage.getItem('token')
+        }
+      }
+      axios.get(`http://127.0.0.1:8000/api/ads/${id}`, headers)
+        .then(res => {
+          this.setState({
+            animal_name: res.data.animal_name,
+            type_search_id: res.data.type_search_id,
+            departure_city: res.data.departure_city,
+            arrival_city: res.data.arrival_city,
+            company: res.data.company,
+            description: res.data.description,
+            image: res.data.image,
+            date: res.data.date,
+          });
+          console.log(res.data)
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+
+      axios.get('http://127.0.0.1:8000/api/typesearchs/', headers)
+        .then(res => {
+          let typeSearchs = res.data.map(typesearch => {
+            return { value: typesearch.id, display: typesearch.name }
+          });
+          this.setState({
+            options: [{
+              value: '', display: 'Selectionner le type d\'animal'
+            }].concat(typeSearchs)
+          });
+        }).catch(error => {
+          console.log(error);
         });
-        this.setState({
-          options: [{
-            value: '', display: 'Selectionner le type d\'animal'
-          }].concat(typeSearchs)
-        });
-      }).catch(error => {
-        console.log(error);
-      });
+    }
   }
 
   handleTypeSearch = event => {
@@ -114,10 +120,9 @@ export default class PostAdComponent extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(event);
-    // console.log('image envoyée')
 
     let bodyFormData = new FormData();
+    bodyFormData.append('_method', 'PUT');
     bodyFormData.set('animal_name', this.state.animal_name);
     bodyFormData.set('type_search_id', this.state.type_search_id);
     bodyFormData.set('departure_city', this.state.departure_city);
@@ -127,28 +132,32 @@ export default class PostAdComponent extends Component {
     bodyFormData.set('image', this.state.image);
     bodyFormData.set('date', this.state.date);
 
-    let headers = {
-      headers: {
-        'API-TOKEN': localStorage.getItem('token')
-      }
-    }
-
-    axios.post('http://127.0.0.1:8000/api/ads/add', bodyFormData, headers)
-      .then(res => {
-        this.setState({ redirect: true })
-        console.log(res)
-      })
-      .catch(error => {
-        console.log('error');
-        if (error.response.status === 401) {
-          this.setState({ errors: error.response.data.errors }, () => {
-            console.log(this.state)
-          })
+    if (localStorage.getItem('token')) {
+      let id = this.props.match.params.id
+      let headers = {
+        headers: {
+          'API-TOKEN': localStorage.getItem('token')
         }
-      })
+      }
+
+      axios.post(`http://127.0.0.1:8000/api/ads/edit/${id}`, bodyFormData, headers)
+        .then(res => {
+          this.setState({ redirect: true })
+          console.log(res)
+        })
+        .catch(error => {
+          console.log('error');
+          if (error.response.status === 401) {
+            this.setState({ errors: error.response.data.errors }, () => {
+              console.log(this.state)
+            })
+          }
+        })
+    };
   };
 
   render() {
+    //to do : change redirection link
     if (this.state.redirect) {
       return (<Redirect to="/asso-dashboard" />)
     }
@@ -161,19 +170,19 @@ export default class PostAdComponent extends Component {
                 Rechercher un vol
               </h1>
               <form method="POST" onSubmit={this.handleSubmit} encType="multipart/form-data">
-                <MDBInput label="Nom de l'animal" onChange={this.handleAnimalNameChange} group type="text" validate />
+                {/* <input type="hidden" name="_method" value="PUT" /> */}
+                <MDBInput label="Nom de l'animal" value={this.state.animal_name} onChange={this.handleAnimalNameChange} group type="text" validate />
                 <p style={{ color: '#757575' }}>Type d'animal :</p>
                 <select value={this.state.type_search_id}
                   onChange={this.handleTypeSearch}>
                   {this.state.options.map((option, i) => <option key={i} value={option.value}>{option.display}</option>)}
                 </select>
                 <p style={{ color: '#757575' }}>Date de départ :</p>
-                <input type="date" id="start" name="trip-start"
-                  min="2021-01-01" onChange={this.handleDateChange} />
-                <MDBInput label="Ville de départ" onChange={this.handleDepartureCityChange} group type="text" validate />
-                <MDBInput label="Ville d'arrivée" onChange={this.handleArrivalCityChange} group type="text" validate />
-                <MDBInput label="Compagnie" onChange={this.handleCompanyChange} group type="text" validate />
-                <MDBInput type="textarea" onChange={this.handleDescriptionChange} label="Description de votre annonce" rows="5" />
+                <input type="date" id="start" name="trip-start" value={this.state.date} onChange={this.handleDateChange} />
+                <MDBInput label="Ville de départ" value={this.state.departure_city} onChange={this.handleDepartureCityChange} group type="text" validate />
+                <MDBInput label="Ville d'arrivée" value={this.state.arrival_city} onChange={this.handleArrivalCityChange} group type="text" validate />
+                <MDBInput label="Compagnie" value={this.state.company} onChange={this.handleCompanyChange} group type="text" validate />
+                <MDBInput type="textarea" value={this.state.description} onChange={this.handleDescriptionChange} label="Description de votre annonce" rows="5" />
                 <div className="form-group">
                   <label style={{ color: '#757575' }} htmlFor="exampleFormControlFile1">Ajouter une photo</label>
                   <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={this.handleImageChange} />
