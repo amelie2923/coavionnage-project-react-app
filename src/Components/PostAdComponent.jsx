@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import dayjs from 'dayjs';
 // import DatePicker from 'react-datepicker';
 // import 'react-datepicker/dist/react-datepicker.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -25,6 +26,8 @@ import { Redirect } from 'react-router-dom';
 //   "Air France",
 //   "Air Austral"
 // ];
+
+const minDate = dayjs(new Date()).format('YYYY-MM-DD')
 
 export default class PostAdComponent extends Component {
   constructor(props) {
@@ -169,7 +172,7 @@ export default class PostAdComponent extends Component {
                 </select>
                 <p style={{ color: '#757575' }}>Date de départ :</p>
                 <input type="date" id="start" name="trip-start"
-                  min="2021-01-01" onChange={this.handleDateChange} />
+                  min={minDate} onChange={this.handleDateChange} />
                 <MDBInput label="Ville de départ" onChange={this.handleDepartureCityChange} group type="text" validate />
                 <MDBInput label="Ville d'arrivée" onChange={this.handleArrivalCityChange} group type="text" validate />
                 <MDBInput label="Compagnie" onChange={this.handleCompanyChange} group type="text" validate />

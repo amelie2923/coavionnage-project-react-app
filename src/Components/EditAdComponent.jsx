@@ -5,6 +5,9 @@ import React, { Component } from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import dayjs from 'dayjs';
+
+// const minDate = dayjs(new Date()).format('DD/MM/YYYY')
 
 export default class EditAdComponent extends Component {
   constructor(props) {
@@ -82,8 +85,8 @@ export default class EditAdComponent extends Component {
   };
 
   handleDateChange = event => {
-    this.setState({
-      date: event.target.value
+    this.setState({ date: event.target.value }, () => {
+      console.log(this.state);
     });
   };
 
@@ -161,6 +164,8 @@ export default class EditAdComponent extends Component {
     if (this.state.redirect) {
       return (<Redirect to="/asso-dashboard" />)
     }
+    // console.log(this.state.date)
+    // console.log("Date " + dayjs(this.state.date).format('DD-MM-YYYY'))
     return (
       <>
         <MDBContainer>
@@ -178,7 +183,8 @@ export default class EditAdComponent extends Component {
                   {this.state.options.map((option, i) => <option key={i} value={option.value}>{option.display}</option>)}
                 </select>
                 <p style={{ color: '#757575' }}>Date de départ :</p>
-                <input type="date" id="start" name="trip-start" value={this.state.date} onChange={this.handleDateChange} />
+                <input type="date" id="start" name="trip-start" value={dayjs(this.state.date).format('DD/MM/YYYY')}
+                  onChange={this.handleDateChange} />
                 <MDBInput label="Ville de départ" value={this.state.departure_city} onChange={this.handleDepartureCityChange} group type="text" validate />
                 <MDBInput label="Ville d'arrivée" value={this.state.arrival_city} onChange={this.handleArrivalCityChange} group type="text" validate />
                 <MDBInput label="Compagnie" value={this.state.company} onChange={this.handleCompanyChange} group type="text" validate />

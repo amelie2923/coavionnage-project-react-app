@@ -3,6 +3,7 @@ import {
   MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
   MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon
 } from "mdbreact";
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import {
   Link,
@@ -13,6 +14,7 @@ export default class NavbarComponent extends Component {
     super(props)
 
     this.state = {
+      user: {},
       redirect: false,
       isOpen: false,
     }
@@ -20,7 +22,7 @@ export default class NavbarComponent extends Component {
 
   handleLogout = () => {
     let token = localStorage.getItem('token');
-    axios.post("http://127.0.0.1:8000/api/logout", [], { headers: { 'Authorization': 'Bearer ' + token } }).then(res => {
+    axios.post("http://127.0.0.1:8000/api/logout", [], { headers: { 'Authorization': 'API-TOKEN ' + token } }).then(res => {
       localStorage.setItem('token', '');
       localStorage.clear();
       this.setState({ redirect: true })
@@ -33,10 +35,13 @@ export default class NavbarComponent extends Component {
   };
 
   render() {
+    if (this.state.redirect) {
+      return (<Redirect to="/" />)
+    }
     return (
-      <MDBNavbar color="blue-gradient" dark expand="md">
+      <MDBNavbar color="deep-orange lighten-1" dark expand="md">
         <MDBNavbarBrand>
-          <strong className="white-text">Coavionnage</strong>
+          <Link to={'/'}><strong className="white-text">Coavionnage</strong></Link>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
@@ -60,6 +65,8 @@ export default class NavbarComponent extends Component {
                     localStorage.getItem('token')
                       ?
                       <>
+                        {/* Récupérer le rôle de l'utilisateur connecté : si 1 -> asso-dashboard et si 2 user-dashboard*/}
+                        {/* <MDBDropdownItem><Link to="/login">Tableau de bord</Link></MDBDropdownItem> */}
                         <MDBDropdownItem onClick={() => this.handleLogout()}>Déconnexion</MDBDropdownItem>
                       </>
                       :

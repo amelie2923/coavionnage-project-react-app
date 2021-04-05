@@ -29,7 +29,7 @@ export default class AuthenticationComponent extends Component {
     }
     return (
       <>
-        Google auth
+        Social auth
       </>
     )
   }

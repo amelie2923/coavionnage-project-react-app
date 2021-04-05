@@ -61,6 +61,7 @@ export default class LoginComponent extends Component {
             console.log(this.state)
           })
         }
+        console.log(error.response)
       })
   };
 
@@ -68,6 +69,7 @@ export default class LoginComponent extends Component {
     if (this.state.redirect) {
       return (<Redirect to="/" />)
     };
+    console.log(this.state.errors);
     return (
       <MDBContainer>
         <MDBRow style={{ height: '100%', width: '100%', paddingTop: '5rem' }}
@@ -101,7 +103,10 @@ export default class LoginComponent extends Component {
                       error="wrong"
                       success="right"
                       onChange={this.handleEmailChange}
+                      className={`form-control ${this.state.errors && this.state.errors.email ? "is-invalid" : ''}`}
                     />
+                    {this.state.errors && this.state.errors.email ? <div class="text-danger invalid-feedback"></div> : ''}
+                    {/* {this.state.errors && this.state.errors.email ? <div class="text-danger invalid-feedback">{this.state.errors['email']}</div> : ''} */}
                     <MDBInput
                       label="Votre mot de passe"
                       icon="lock"
@@ -109,7 +114,9 @@ export default class LoginComponent extends Component {
                       type="password"
                       validate
                       onChange={this.handlePasswordChange}
+                      className={`form-control ${this.state.errors && this.state.errors.password ? "is-invalid" : ''}`}
                     />
+                    {this.state.errors && this.state.errors.password ? <div className="text-danger invalid-feedback"></div> : ''}
                     {/* <MDBLink to='/forgot-password'>
                       Mot de passe oublié ?
                     </MDBLink> */}
@@ -118,6 +125,7 @@ export default class LoginComponent extends Component {
                     {/* <MDBBtn color="light-blue" type="submit">
                       Se connecter
                     </MDBBtn> */}
+                    {this.state.errors && this.state.errors === 'bad_credentials' ? <div className="alert alert-warning">Vos identifiants de connexion sont incorrects !</div> : ''}
                     <MDBBtn
                       type="submit"
                       gradient="blue"
@@ -136,6 +144,7 @@ export default class LoginComponent extends Component {
               </p>
               <div className="row my-3 d-flex justify-content-center">
                 <MDBBtn
+                  href="http://127.0.0.1:8000/auth/redirect/facebook"
                   type="button"
                   color="white"
                   className="mr-md-3 z-depth-1a"

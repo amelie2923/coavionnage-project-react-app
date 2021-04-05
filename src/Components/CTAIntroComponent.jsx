@@ -1,78 +1,73 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
-  MDBMask,
+  MDBIcon,
   MDBRow,
   MDBCol,
-  MDBBtn,
   MDBView,
   MDBContainer,
-  MDBIcon
+  MDBAnimation
 } from 'mdbreact';
 import '../Components/CTAIntroComponent.css';
+// import NavbarComponent from './NavbarComponent';
 
-export default class CTAIntroComponent extends React.Component {
-  state = {
-    collapsed: false
-  };
-
-  handleTogglerClick = () => {
-    const { collapsed } = this.state;
-    this.setState({
-      collapsed: !collapsed
-    });
-  };
-
-  // componentDidMount() {
-  //   document.querySelector('nav').style.height = '65px';
-  // };
-
-  // componentWillUnmount() {
-  //   document.querySelector('nav').style.height = 'auto';
-  // };
-
+class CTAIntroComponent extends React.Component {
   render() {
-    const { collapsed } = this.state;
-    // const navStyle = { marginTop: '4rem' };
-    const overlay = (
-      <div
-        id='sidenav-overlay'
-        style={{ backgroundColor: 'transparent' }}
-        onClick={this.handleTogglerClick}
-      />
-    );
     return (
-      <div id='calltoaction'>
-        <Router>
-          <div>
-            {collapsed && overlay}
-          </div>
-        </Router>
+      <div id='apppage' className='bg' style={{ backgroundImage: "url(/images/efe-yagiz-soysal-DGyVvAJNyPE-unsplash.jpg)" }}>
         <MDBView>
-          <MDBMask className='rgba-blue-slight ' />
           <MDBContainer
-            style={{ height: '100%', width: '100%', paddingTop: '14rem' }}
-            className='d-flex justify-content-center align-items-center'
+            style={{ height: '100%', width: '100%', paddingTop: '10rem' }}
+            className='d-flex justify-content-center white-text align-items-center'
           >
             <MDBRow>
-              <MDBCol md='12' className='mb-4 text-center'>
-                <h1 className='display-4 font-weight-bold mb-0 pt-md-5 pt-5'>
-                  Plateforme de mise en relation
-                </h1>
-                <h5 className='pt-md-5 pt-sm-2 pt-5 pb-md-5 pb-sm-3 pb-5'>
-                  {/* Aider les animaux de La Réunion en proposant votre billet d'avion a une association qui s'occuperont du rapatriement ! C'est gratuit et vous n'avez rien à faire ! */}
-                </h5>
-                <MDBBtn className='btn-light-blue'>
-                  <MDBIcon icon='search' className='mr-2' /> Association : Rechercher un vol
-                </MDBBtn>
-                <MDBBtn outline color='light-blue'>
-                  <MDBIcon icon='user' /> Voyageur : Proposer votre vol
-                </MDBBtn>
+              <MDBCol md='6' className='text-center text-md-left mt-xl-5 mb-5'>
+                <MDBAnimation type='fadeInLeft' delay='.3s'>
+                  <h1 className='h1-responsive primary-text font-weight-bold mt-sm-5'>
+                    Aider un animal grâce à votre billet d'avion
+                  </h1>
+                  <hr className='primary' />
+                  <h6 className='mb-4'>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Rem repellendus quasi fuga nesciunt dolorum nulla magnam
+                    veniam sapiente, fugiat! Commodi sequi non animi ea dolor
+                    molestiae iste.
+                  </h6>
+                  <p><Link className="btn primary" to={''}><MDBIcon icon='search' className='mr-2' /> Association : Rechercher un vol</Link>
+                    <Link className="btn primary" to={''}><MDBIcon icon='user' /> Voyageur : Proposer votre vol</Link></p>
+                </MDBAnimation>
+              </MDBCol>
+
+              <MDBCol md='6' xl='5' className='mt-xl-5'>
+                {/* <MDBAnimation type='fadeInRight' delay='.3s'>
+                  <img
+                    src='https://mdbcdn.b-cdn.net/img/Mockups/Transparent/Small/admin-new.png'
+                    alt=''
+                    className='img-fluid'
+                  />
+                </MDBAnimation> */}
               </MDBCol>
             </MDBRow>
           </MDBContainer>
         </MDBView>
-      </div >
+        <MDBContainer>
+          <MDBRow className='py-5'>
+            <MDBCol md='12' className='text-center'>
+              <p>
+                {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum. */}
+              </p>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+      </div>
     );
   }
 }
+
+export default CTAIntroComponent;

@@ -31,11 +31,12 @@ export default class AdsGalleryComponent extends Component {
     return (
       <div className="container">
         <div className="row d-flex justify-content-center">
-          {this.state.ads.map((ad) =>
+          {this.state.ads.map((ad, i) =>
             <MDBCol md='4'>
               <MDBCard className="mx-2 my-3" narrow>
                 <MDBView cascade>
                   <MDBCardImage
+                    key={i}
                     hover
                     overlay='white-slight'
                     className='card-img-top'
@@ -45,12 +46,14 @@ export default class AdsGalleryComponent extends Component {
                 </MDBView>
 
                 <MDBCardBody>
-                  <h5 className='pink-text text-center'>
+                  <h5 className='primary-text text-center'>
                     <MDBIcon icon="paw" /> {ad.animal_name}
                   </h5>
 
                   <MDBCardTitle className='font-weight-bold'>
                     <MDBCardText className="text-center my-1">
+                      <p><MDBIcon icon="plane-departure" /> {ad.departure_city}{' '}<MDBIcon icon="plane-arrival" /> {ad.arrival_city}</p>
+                      {/* Autre design departure -> arrival with icon or plane or arrow */}
                       À partir du: {' '}
                       <DayJS format="DD-MM-YYYY">
                         {ad.date}
@@ -58,7 +61,7 @@ export default class AdsGalleryComponent extends Component {
                     </MDBCardText>
                   </MDBCardTitle>
                   <p className="text-center">
-                    <Link className="btn" to={`/ads/${ad.id}`}>Je l'aide</Link>
+                    <Link className="btn primary" to={`/ads/${ad.id}`}>Je l'aide</Link>
                   </p>
                 </MDBCardBody>
               </MDBCard>

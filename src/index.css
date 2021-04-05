@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.blue-text {
+  color: #33b5e5!important;
+}
+
+.primary-text {
+  color: #ffab91!important;
+}
+
+.btn {
+  padding: 8px 20px!important;
+  text-decoration:none!important;
+  font-weight:bold!important;
+  border-radius:5px!important;
+  cursor:pointer!important;
+}
+
+.primary {
+  background-color:#ff8a65!important;
+  color: #FFFFFF!important;
+}
+
+.primary:hover {
+  background-color:#ff7043!important;
+  color: #FFFFFF!important;
+}

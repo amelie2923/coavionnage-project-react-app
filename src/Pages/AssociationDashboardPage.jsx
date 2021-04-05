@@ -3,6 +3,7 @@ import '../Pages/AssociationDashboardPage.css';
 import TopNavigationComponent from '../Components/TopNavigationComponent';
 import SideBarComponent from '../Components/SideBarComponent';
 import TableAssoComponent from '../Components/TableAssoComponent';
+import NotificationsCardComponent from '../Components/NotificationsCardComponent';
 
 const AssociationDashboardPage = () => {
   return (
@@ -12,6 +13,7 @@ const AssociationDashboardPage = () => {
       <main id="content" className="p-5">
         <h2>Mes annonces</h2>
         <TableAssoComponent />
+        <NotificationsCardComponent />
         {/* <AdsGalleryComponent /> */}
       </main>
       {/* <AdminCardSection1 />

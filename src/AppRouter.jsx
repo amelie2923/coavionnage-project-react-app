@@ -6,34 +6,40 @@ import {
 import PublicHomePage from './Pages/PublicHomePage';
 import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
+import RegisterAssoPage from './Pages/RegisterAssoPage';
 import AssociationDashboardPage from './Pages/AssociationDashboardPage';
 import ForgotPasswordPage from './Pages/ForgotPasswordPage';
 import PostAdComponent from './Components/PostAdComponent';
-import PurposeFlightFormComponent from './Components/PurposeFlightFormComponent';
-import AdComponent from './Components/AdComponent';
+import PostFlightComponent from './Components/PostFlightComponent';
+import EditFlightComponent from './Components/EditFlightComponent';
+import GetAdComponent from './Components/GetAdComponent';
 import EditAdComponent from './Components/EditAdComponent';
 import AuthenticationComponent from './Components/AuthenticationComponent';
 import NavBarComponent from './Components/NavbarComponent';
-import FooterComponent from './Components/FooterComponent';
+import GetProfileComponent from './Components/GetProfileComponent';
+import GetFlightComponent from './Components/GetFlightComponent';
 
 export class AppRouter extends Component {
   render() {
     return (
       <Switch>
-        <Route path="/register" component={RegisterPage} />
+        <Route exact path="/register" component={RegisterPage} />
+        <Route exact path="/association-register" component={RegisterAssoPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route path="/asso-dashboard" component={AssociationDashboardPage} />
         <Route path="/forgot-password" component={ForgotPasswordPage} />
         <Route path="/ads/edit/:id" component={EditAdComponent} />
         <Route path="/ads/new" component={PostAdComponent} />
         <Route path="/login/:provider/:token" component={AuthenticationComponent} />
-        <Route path="/planetickets/new" component={PurposeFlightFormComponent} />
-        <div>
+        <Route path="/planetickets/new" component={PostFlightComponent} />
+        <Route path="/planetickets/edit/:id" component={EditFlightComponent} />
+        <Route path="/users/profile/:id" component={GetProfileComponent} />
+        <>
           <NavBarComponent />
           <Route exact path="/" component={PublicHomePage} />
-          <Route path="/ads/:id" component={AdComponent} />
-        </div>
-        <FooterComponent />
+          <Route path="/ads/:id" component={GetAdComponent} />
+          <Route path="/planetickets/:id" component={GetFlightComponent} />
+        </>
       </Switch>
     )
   }
