@@ -11,14 +11,20 @@ const SideBarComponent = () => {
       <MDBListGroup className="list-group-flush">
         <NavLink exact={true} to="/asso-dashboard" activeClassName="activeClass">
           <MDBListGroupItem>
-            <MDBIcon icon="chart-pie" className="mr-3" />
+            <MDBIcon icon="file-invoice" className="mr-3" />
               Mes annonces
           </MDBListGroupItem>
         </NavLink>
         <NavLink to="/profile" activeClassName="activeClass">
           <MDBListGroupItem>
             <MDBIcon icon="user" className="mr-3" />
-              Profil
+              Compte
+          </MDBListGroupItem>
+        </NavLink>
+        <NavLink to="/notifications">
+          <MDBListGroupItem>
+            <MDBIcon icon="bell" className="mr-3" />
+              Notifications
           </MDBListGroupItem>
         </NavLink>
         {/* <NavLink to="/tables" activeClassName="activeClass">

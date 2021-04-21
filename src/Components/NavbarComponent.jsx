@@ -20,6 +20,28 @@ export default class NavbarComponent extends Component {
     }
   };
 
+  // componentDidMount() {
+  //   if (localStorage.getItem('token')) {
+  //     let id = this.props.match.params.id
+  //     let headers = {
+  //       headers: {
+  //         'API-TOKEN': localStorage.getItem('token')
+  //       }
+  //     }
+
+  //     axios.get(`http://127.0.0.1:8000/api/users/${id}`, headers)
+  //       .then(res => {
+  //         this.setState({ user: res.data }, () => {
+  //           console.log(res.data)
+  //         })
+  //       })
+  //       .catch(error => {
+  //         console.log(error.response)
+  //       })
+  //   } else {
+  //   }
+  // }
+
   handleLogout = () => {
     let token = localStorage.getItem('token');
     axios.post("http://127.0.0.1:8000/api/logout", [], { headers: { 'Authorization': 'API-TOKEN ' + token } }).then(res => {
@@ -38,6 +60,7 @@ export default class NavbarComponent extends Component {
     if (this.state.redirect) {
       return (<Redirect to="/" />)
     }
+    console.log(this.state)
     return (
       <MDBNavbar color="deep-orange lighten-1" dark expand="md">
         <MDBNavbarBrand>
@@ -67,6 +90,7 @@ export default class NavbarComponent extends Component {
                       <>
                         {/* Récupérer le rôle de l'utilisateur connecté : si 1 -> asso-dashboard et si 2 user-dashboard*/}
                         {/* <MDBDropdownItem><Link to="/login">Tableau de bord</Link></MDBDropdownItem> */}
+                        {this.state.user.name}
                         <MDBDropdownItem onClick={() => this.handleLogout()}>Déconnexion</MDBDropdownItem>
                       </>
                       :

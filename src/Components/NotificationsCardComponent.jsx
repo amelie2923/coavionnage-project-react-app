@@ -13,7 +13,6 @@ export default class NotificationsCardComponent extends Component {
 
   componentDidMount() {
     if (localStorage.getItem('token')) {
-      // let id = this.props.match.params.id
       let headers = {
         headers: {
           'API-TOKEN': localStorage.getItem('token')
@@ -37,11 +36,13 @@ export default class NotificationsCardComponent extends Component {
           <MDBCard>
             <MDBCardBody>
               <MDBCardTitle>Notifications</MDBCardTitle>
-              <MDBCardText>
-                {/* {this.state.notifications && this.state.notifications.length && this.state.notifications.map(notification => {
-                  return <small>{notification.id}</small>
-                })} */}
-              </MDBCardText>
+              {this.state.notifications && this.state.notifications.length && this.state.notifications.map((notification, i) => {
+                return (
+                  <MDBCardText>
+                    L'utilisateur n°{JSON.parse(notification.data).user_id} a mis votre annonce {JSON.parse(notification.data).ad_id} dans ses favoris
+                  </MDBCardText>
+                )
+              })}
             </MDBCardBody>
           </MDBCard>
         </MDBCol>

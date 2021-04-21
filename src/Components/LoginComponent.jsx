@@ -143,14 +143,14 @@ export default class LoginComponent extends Component {
                 ou se connecter avec :
               </p>
               <div className="row my-3 d-flex justify-content-center">
-                <MDBBtn
+                {/* <MDBBtn
                   href="http://127.0.0.1:8000/auth/redirect/facebook"
                   type="button"
                   color="white"
                   className="mr-md-3 z-depth-1a"
                 >
                   <MDBIcon fab icon="facebook-f" className="blue-text text-center" />
-                </MDBBtn>
+                </MDBBtn> */}
                 <MDBBtn
                   href="http://127.0.0.1:8000/auth/redirect/google"
                   type="button"

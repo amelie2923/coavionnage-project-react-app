@@ -6,6 +6,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import dayjs from 'dayjs';
+// import PDFComponent from './PDFComponent';
 // import DatePicker from 'react-datepicker';
 // import 'react-datepicker/dist/react-datepicker.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -45,6 +46,7 @@ export default class PostAdComponent extends Component {
       date: '',
       redirect: false,
       errors: [],
+      // adSubmitted: false,
     };
   };
 
@@ -139,16 +141,18 @@ export default class PostAdComponent extends Component {
     axios.post('http://127.0.0.1:8000/api/ads/add', bodyFormData, headers)
       .then(res => {
         this.setState({ redirect: true })
+        // this.setState({ adSubmitted: true });
+
         console.log(res)
       })
-      .catch(error => {
-        console.log('error');
-        if (error.response.status === 401) {
-          this.setState({ errors: error.response.data.errors }, () => {
-            console.log(this.state)
-          })
-        }
-      })
+    // .catch(error => {
+    //   console.log('error');
+    //   if (error.response.status === 401) {
+    //     this.setState({ errors: error.response.data.errors }, () => {
+    //       console.log(this.state)
+    //     })
+    //   }
+    // })
   };
 
   render() {
@@ -157,7 +161,8 @@ export default class PostAdComponent extends Component {
     }
     return (
       <>
-        <MDBContainer>
+        {/* {!this.state.adSubmitted ? */}
+        < MDBContainer >
           <MDBRow>
             <MDBCol>
               <h1 className='font-weight-bold mb-0 pt-md-5 pt-5'>
@@ -196,6 +201,9 @@ export default class PostAdComponent extends Component {
             </MDBCol>
           </MDBRow>
         </MDBContainer>
+        {/* :
+          <PDFComponent animal_name={this.state.animal_name} type_search_id={this.state.type_search_id} departure_city={this.state.departure_city} arrival_city={this.state.arrival_city} company={this.state.company} description={this.state.description} image={this.state.image} date={this.state.date} />
+        } */}
       </>
     )
   }
