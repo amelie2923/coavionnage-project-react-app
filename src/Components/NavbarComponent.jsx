@@ -12,7 +12,6 @@ import {
 export default class NavbarComponent extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       user: {},
       redirect: false,
@@ -20,27 +19,20 @@ export default class NavbarComponent extends Component {
     }
   };
 
-  // componentDidMount() {
-  //   if (localStorage.getItem('token')) {
-  //     let id = this.props.match.params.id
-  //     let headers = {
-  //       headers: {
-  //         'API-TOKEN': localStorage.getItem('token')
-  //       }
-  //     }
-
-  //     axios.get(`http://127.0.0.1:8000/api/users/${id}`, headers)
-  //       .then(res => {
-  //         this.setState({ user: res.data }, () => {
-  //           console.log(res.data)
-  //         })
-  //       })
-  //       .catch(error => {
-  //         console.log(error.response)
-  //       })
-  //   } else {
-  //   }
-  // }
+  componentDidMount() {
+    let headers = {
+      headers: {
+        'API-TOKEN': localStorage.getItem('token')
+      }
+    }
+    axios.get(`http://127.0.0.1:8000/api/users/profile`, headers)
+      .then(res => {
+        this.setState({ user: res.data })
+      })
+      .catch(error => {
+        console.log(error.response)
+      })
+  }
 
   handleLogout = () => {
     let token = localStorage.getItem('token');
@@ -60,11 +52,11 @@ export default class NavbarComponent extends Component {
     if (this.state.redirect) {
       return (<Redirect to="/" />)
     }
-    console.log(this.state)
+    console.log(this.state.user)
     return (
       <MDBNavbar color="deep-orange lighten-1" dark expand="md">
         <MDBNavbarBrand>
-          <Link to={'/'}><strong className="white-text">Coavionnage</strong></Link>
+          <Link to={'/'}><strong className="white-text">Animal Airline</strong></Link>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
@@ -73,31 +65,50 @@ export default class NavbarComponent extends Component {
           </MDBNavbarNav> */}
           <MDBNavbarNav right>
             <MDBNavItem active>
-              <MDBNavLink to="#!">Rechercher</MDBNavLink>
+              <MDBNavLink to="#!">Vols disponibles</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="#!">Proposer un trajet</MDBNavLink>
+              <MDBNavLink to="/all-ads">Animaux à coavionner</MDBNavLink>
             </MDBNavItem>
+            {/* <MDBNavItem>
+              <MDBNavLink to="#!">Proposer un trajet</MDBNavLink>
+            </MDBNavItem> */}
             <MDBNavItem>
               <MDBDropdown>
                 <MDBDropdownToggle nav caret>
-                  <MDBIcon icon="user" />
+                  <MDBIcon icon="user" className={"mr-3 ml-3"} />
+                  {localStorage.getItem('token') ?
+                    <>
+                      Bonjour {this.state.user.name}
+                    </>
+                    :
+                    null
+                  }
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default" right>
                   {
                     localStorage.getItem('token')
                       ?
                       <>
-                        {/* Récupérer le rôle de l'utilisateur connecté : si 1 -> asso-dashboard et si 2 user-dashboard*/}
-                        {/* <MDBDropdownItem><Link to="/login">Tableau de bord</Link></MDBDropdownItem> */}
-                        {this.state.user.name}
-                        <MDBDropdownItem onClick={() => this.handleLogout()}>Déconnexion</MDBDropdownItem>
+                        {this.state.user.role_id === 1 ?
+                          <>
+                            <MDBDropdownItem className="text-center"><Link to="/association-dashboard">Tableau de bord</Link></MDBDropdownItem>
+                            <MDBDropdownItem className="text-center"><Link to="/association-dashboard">Créer une annonce</Link></MDBDropdownItem>
+                          </>
+                          :
+                          <>
+                            <MDBDropdownItem className="text-center"><Link to="/traveller-dashboard">Tableau de bord</Link></MDBDropdownItem>
+                            <MDBDropdownItem className="text-center"><Link to="/traveller-dashboard">Ajouter un billet d'avion</Link></MDBDropdownItem>
+                          </>
+                        }
+                        <MDBDropdownItem className="text-center" onClick={() => this.handleLogout()}>Déconnexion</MDBDropdownItem>
                       </>
                       :
                       <>
                         <MDBDropdownItem><Link to="/login">Connexion</Link></MDBDropdownItem>
                         <MDBDropdownItem><Link to="/register">Inscription</Link></MDBDropdownItem>
                       </>
+
                   }
                 </MDBDropdownMenu>
               </MDBDropdown>

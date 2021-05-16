@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBView, MDBIcon } from 'mdbreact';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './FlightsGalleryComponent.css';
 // import * as dayjs from 'dayjs'
 // import 'dayjs/locale/fr' // import locale
 
@@ -29,7 +30,7 @@ export default class AdsGalleryComponent extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid orange-background">
         <div className="row d-flex justify-content-center">
           {this.state.planetickets.map((planeticket, i) =>
             <MDBCol md='4'>
@@ -57,6 +58,9 @@ export default class AdsGalleryComponent extends Component {
             </MDBCol>
           )}
         </div>
+        <p className="text-right">
+          <Link to="/all-flights" className="white-text text-right"><strong>Voir plus <MDBIcon icon="angle-double-right" /></strong></Link>
+        </p>
       </div>
     )
   }

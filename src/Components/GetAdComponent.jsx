@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { MDBBtn, MDBBadge, MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBCol, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBIcon } from 'mdbreact';
-import { Redirect } from 'react-router-dom';
+import { MDBBtn, MDBBadge, MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBCol, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBIcon, MDBRow } from 'mdbreact';
+import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 // import NavbarComponent from './NavbarComponent';
 import LoaderComponent from './LoaderComponent';
 import DayJS from 'react-dayjs';
 import QRCode from 'qrcode.react';
 
-export default class AdComponent extends Component {
+export default class GetAdComponent extends Component {
   constructor() {
     super()
     this.state = {
@@ -118,6 +118,9 @@ export default class AdComponent extends Component {
             </MDBView>
           </MDBCarouselInner>
         </MDBCarousel>
+        <MDBCol className="text-center" md='6'>
+          <Link className="orange-text" to='/all-ads'><MDBIcon icon="angle-left" /> Retour aux annonces</Link>
+        </MDBCol>
         {/* {!this.state.onClicked ? */}
         <div className="container my-5">
           {
@@ -136,6 +139,22 @@ export default class AdComponent extends Component {
                         <MDBCardText>Au départ de: {this.state.ad.departure_city}</MDBCardText>
                         <MDBCardText>Date: à partir du <DayJS format="DD-MM-YYYY">{this.state.ad.date}</DayJS></MDBCardText>
                         <MDBCardText><strong>Description</strong><br></br>{this.state.ad.description}</MDBCardText>
+                      </MDBCardBody>
+                    </MDBCard>
+                    <MDBCard>
+                      <MDBCardBody className="text-center">
+                        {
+                          this.state.favorite
+                            ?
+                            <>
+                              <MDBIcon icon="heart red-text pr-3" onClick={() => this.handleFavorite()} /> Supprimer des favoris
+                          </>
+                            :
+                            <>
+                              <MDBIcon far icon="heart" onClick={() => this.handleFavorite()} /> Ajouter en favori
+                          </>
+                        }
+                        {/* <p className="text-center">Here scan code</p> */}
                       </MDBCardBody>
                     </MDBCard>
                     {/* <p>Scannez mon code avec votre smartphone pour me proposer une place!</p> */}
@@ -168,7 +187,7 @@ export default class AdComponent extends Component {
                           /> <br />
                         Ou contacter directement l'association :<br />
                           {this.state.ad.user.name}<br />
-                          {this.state.user.profile.address}<br />
+                          {this.state.ad.user.email}<br />
                           {this.state.user.profile.phone}<br />
                         </div>
                         {/* Maps
@@ -176,22 +195,6 @@ export default class AdComponent extends Component {
                       -QR Code-
                       Ou contacter directement l'association :
                       -Mail asso- */}
-                      </MDBCardBody>
-                    </MDBCard>
-                    <MDBCard>
-                      <MDBCardBody className="text-center">
-                        {
-                          this.state.favorite
-                            ?
-                            <>
-                              <MDBIcon icon="heart red-text pr-3" onClick={() => this.handleFavorite()} /> Supprimer des favoris
-                          </>
-                            :
-                            <>
-                              <MDBIcon far icon="heart" onClick={() => this.handleFavorite()} /> Ajouter en favori
-                          </>
-                        }
-                        {/* <p className="text-center">Here scan code</p> */}
                       </MDBCardBody>
                     </MDBCard>
                   </MDBCol>

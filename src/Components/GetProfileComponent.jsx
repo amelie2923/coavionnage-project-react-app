@@ -7,7 +7,7 @@ import axios from 'axios';
 import LoaderComponent from './LoaderComponent';
 import DayJS from 'react-dayjs';
 
-export default class AdComponent extends Component {
+export default class GetProfileComponent extends Component {
   constructor() {
     super()
     this.state = {

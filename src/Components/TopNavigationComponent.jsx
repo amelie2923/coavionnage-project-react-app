@@ -1,10 +1,27 @@
 import React, { Component } from 'react';
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBIcon } from 'mdbreact';
+import axios from 'axios';
 
 class TopNavigationComponent extends Component {
   state = {
+    user: {},
     collapse: false
   };
+
+  componentDidMount() {
+    let headers = {
+      headers: {
+        'API-TOKEN': localStorage.getItem('token')
+      }
+    }
+    axios.get(`http://127.0.0.1:8000/api/users/profile`, headers)
+      .then(res => {
+        this.setState({ user: res.data })
+      })
+      .catch(error => {
+        console.log(error.response)
+      })
+  }
 
   onClick = () => {
     this.setState({
@@ -19,10 +36,11 @@ class TopNavigationComponent extends Component {
   };
 
   render() {
+    console.log(this.state.user)
     return (
       <MDBNavbar className="flexible-navbar" light expand="md" scrolling>
         <MDBNavbarBrand href="/">
-          <strong>MDB</strong>
+          <strong>Tableau de bord</strong>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.onClick} />
         <MDBCollapse isOpen={this.state.collapse} navbar>
@@ -47,9 +65,33 @@ class TopNavigationComponent extends Component {
                         <MDBNavItem>
                             <a className="nav-link navbar-link" rel="noopener noreferrer" target="_blank" href="https://twitter.com/mdbootstrap"><MDBIcon fab icon="twitter" /></a>
                         </MDBNavItem> */}
-            <MDBNavItem>
-              <a className="border border-light mr-1 nav-link Ripple-parent" rel="noopener noreferrer" href="/ads/new">
-                <MDBIcon icon="paw" className="mr-2" />Créer une annonce</a>
+            {this.state.user.role_id === 1 ?
+              <MDBNavItem>
+                <a className="border border-light mr-1 nav-link Ripple-parent" rel="noopener noreferrer" href="/ads/new">
+                  <MDBIcon icon="paw" className="mr-2" />Créer une annonce</a>
+              </MDBNavItem>
+              :
+              <MDBNavItem>
+                <a className="border border-light mr-1 nav-link Ripple-parent" rel="noopener noreferrer" href="/planetickets/new">
+                  <MDBIcon icon="plane" className="mr-2" />Poster un billet d'avion</a>
+              </MDBNavItem>
+            }
+            <MDBNavItem className="sidebar-items-toggle">
+              {this.state.user.role_id === 1 ?
+                <a className="border border-light mr-1 nav-link Ripple-parent" rel="noopener noreferrer" href="/association-dashboard">
+                  Tableau de bord
+                </a>
+                :
+                <a className="border border-light mr-1 nav-link Ripple-parent" rel="noopener noreferrer" href="/traveller-dashboard">
+                  Tableau de bord
+                </a>
+              }
+            </MDBNavItem>
+            <MDBNavItem className="sidebar-items-toggle">
+              <a className="border border-light mr-1 nav-link Ripple-parent" rel="noopener noreferrer" href="/profile">Compte</a>
+            </MDBNavItem>
+            <MDBNavItem className="sidebar-items-toggle">
+              <a className="border border-light mr-1 nav-link Ripple-parent" rel="noopener noreferrer" href="/notifications">Notifications</a>
             </MDBNavItem>
           </MDBNavbarNav>
         </MDBCollapse>

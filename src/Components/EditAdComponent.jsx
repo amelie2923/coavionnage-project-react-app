@@ -162,7 +162,7 @@ export default class EditAdComponent extends Component {
   render() {
     //to do : change redirection link
     if (this.state.redirect) {
-      return (<Redirect to="/asso-dashboard" />)
+      return (<Redirect to="/association-dashboard" />)
     }
     // console.log(this.state.date)
     // console.log("Date " + dayjs(this.state.date).format('DD-MM-YYYY'))

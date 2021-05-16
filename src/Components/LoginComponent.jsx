@@ -76,7 +76,7 @@ export default class LoginComponent extends Component {
           className='d-flex justify-content-center align-items-center'>
           <MDBCol md="6">
             <MDBCard>
-              <div className="header pt-3 blue-gradient">
+              <div className="header pt-3 peach-gradient">
                 <MDBRow className="d-flex justify-content-center">
                   <h3 className="white-text mb-3 pt-3 font-weight-bold">
                     Connexion
@@ -128,14 +128,14 @@ export default class LoginComponent extends Component {
                     {this.state.errors && this.state.errors === 'bad_credentials' ? <div className="alert alert-warning">Vos identifiants de connexion sont incorrects !</div> : ''}
                     <MDBBtn
                       type="submit"
-                      gradient="blue"
+                      gradient="peach"
                       className="btn-block z-depth-1a"
                     >
                       Se connecter
                     </MDBBtn>
                   </div>
                   <div className="text-center py-4 mt-3">
-                    <Link to="/forgot-password">Mot de passe oublié ?</Link>
+                    <Link to="/forgot-password"><p className="orange-text">Mot de passe oublié ?</p></Link>
                   </div>
                 </form>
               </MDBCardBody>
@@ -151,28 +151,24 @@ export default class LoginComponent extends Component {
                 >
                   <MDBIcon fab icon="facebook-f" className="blue-text text-center" />
                 </MDBBtn> */}
-                <MDBBtn
-                  href="http://127.0.0.1:8000/auth/redirect/google"
-                  type="button"
-                  color="white"
-                  className="z-depth-1a"
-                >
-                  {/* <a href="http://127.0.0.1:8000/auth/redirect/google" /> */}
-                  <MDBIcon fab icon="google" className="blue-text" />
-                </MDBBtn>
+                <a href="http://127.0.0.1:8000/auth/redirect/google" className="social-icons"><MDBIcon fab icon="facebook" /></a>
+                <a href="http://127.0.0.1:8000/auth/redirect/google" className="social-icons align-middle"><MDBIcon fab icon="google" /></a>
               </div>
               <MDBModalFooter className="mx-5 pt-3 mb-1">
                 <p className="font-small grey-text d-flex justify-content-end">
                   Pas encore membre ?
-                <a href="/register" className="blue-text ml-1">
-                    S'inscrire
+                <a href="/association-register" className="orange-text ml-1">
+                    S'inscrire en tant qu'association
+                </a>
+                  <a href="/register" className="orange-text ml-1">
+                    S'inscrire en tant que voyageur
                 </a>
                 </p>
               </MDBModalFooter>
             </MDBCard>
           </MDBCol>
         </MDBRow>
-      </MDBContainer>
+      </MDBContainer >
     )
   }
 }

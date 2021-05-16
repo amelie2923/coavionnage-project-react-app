@@ -10,6 +10,7 @@ export default class TableAssoComponent extends Component {
   constructor() {
     super()
     this.state = {
+      // ads: {},
       ads: [],
     };
   };
@@ -18,7 +19,7 @@ export default class TableAssoComponent extends Component {
     axios.get('http://127.0.0.1:8000/api/ads')
       .then(res => {
         this.setState({ ads: res.data })
-        console.log(res)
+        console.log(res.data)
       })
       .catch(error => {
         console.log(error.response)
@@ -55,13 +56,12 @@ export default class TableAssoComponent extends Component {
                     </tr>
                   </MDBTableHead>
                   <MDBTableBody>
-                    {this.state.ads.map((ad, i) =>
-                      <tr key={i}>
+                    {this.state.ads.map((ad) =>
+                      <tr key={ad.id}>
                         <td><p className="p-3">{ad.animal_name}</p></td>
                         <td><p className="p-3"><DayJS format="DD-MM-YYYY">
                           {ad.date}
                         </DayJS></p></td>
-                        {/* <td>PDF</td> */}
                         <td>
                           <div className="d-flex justify-content-center">
                             <Link className="p-3 col-example text-left" to={`/ads/${ad.id}`}><MDBIcon icon="search" /></Link>
@@ -71,11 +71,14 @@ export default class TableAssoComponent extends Component {
                         </td>
                         <td>
                           <div className="d-flex justify-content-center">
-                            <PDFDownloadLink className="p-3" document={<PDFComponent animal_name={ad.animal_name}
+                            <Link></Link>
+                            <PDFDownloadLink className="p-3" document={<PDFComponent
+                              animal_name={ad.animal_name}
                               type_search_id={ad.type_search_id} departure_city={ad.departure_city} arrival_city={ad.arrival_city}
                               company={ad.company}
                               description={ad.description}
-                              image={ad.image}
+                              user_name={ad.user.name}
+                              email={ad.user.email}                              // image={ad.image}
                               date={<DayJS format="DD-MM-YYYY">{ad.date}</DayJS>} />} fileName={ad.animal_name}>
                               {({ blob, url, loading, error }) => (loading ? 'Chargement...' : <MDBIcon far icon="file-pdf" />)}
                             </PDFDownloadLink>

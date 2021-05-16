@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 // import NavbarComponent from '../Components/NavbarComponent';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 // import DatePicker from 'react-datepicker';
 // import 'react-datepicker/dist/react-datepicker.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -28,6 +29,7 @@ export default class PurposeFlightComponent extends Component {
     super(props)
 
     this.state = {
+      redirect: false,
       date: '',
       departure_city: '',
       arrival_city: '',
@@ -98,9 +100,13 @@ export default class PurposeFlightComponent extends Component {
           })
         }
       })
+    this.setState({ redirect: true });
   };
 
   render() {
+    if (this.state.redirect) {
+      return (<Redirect to="/" />)
+    };
     return (
       <>
         <MDBContainer>

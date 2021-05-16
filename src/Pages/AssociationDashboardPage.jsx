@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Pages/AssociationDashboardPage.css';
+import '../Pages/DashboardPage.css';
 import TopNavigationComponent from '../Components/TopNavigationComponent';
 import SideBarComponent from '../Components/SideBarComponent';
 import TableAssoComponent from '../Components/TableAssoComponent';

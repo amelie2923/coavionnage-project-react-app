@@ -7,43 +7,34 @@ import { Link } from 'react-router-dom';
 
 // dayjs().format()
 import DayJS from 'react-dayjs';
+// import AdsGalleryComponent from './AdsGalleryComponent';
 
-export default class AdsGalleryComponent extends Component {
+export default class GetAdsComponent extends Component {
   constructor() {
     super()
     this.state = {
       ads: [],
-      // latestAds: []
     };
   };
+
 
   componentDidMount() {
     axios.get('http://127.0.0.1:8000/api/ads')
       .then(res => {
         this.setState({ ads: res.data })
-        console.log(res.data)
+        console.log(res)
       })
       .catch(error => {
         console.log(error.response)
       })
-
-    // axios.get('http://127.0.0.1:8000/api/ads/latest')
-    //   .then(res => {
-    //     this.setState({ latestAds: res.data })
-    //     console.log(res)
-    //   })
-    //   .catch(error => {
-    //     console.log(error.response)
-    //   })
   }
 
+
   render() {
-    console.log(this.state.ads)
     return (
       <div className="container">
         <div className="row d-flex justify-content-center">
           {this.state.ads.map((ad, i) =>
-            i < 3 &&
             <MDBCol md='4'>
               <MDBCard className="mx-2 my-3" narrow>
                 <MDBView cascade>
@@ -80,9 +71,6 @@ export default class AdsGalleryComponent extends Component {
             </MDBCol>
           )}
         </div>
-        <p className="text-right">
-          <Link to="/all-ads" className="orange-text text-right"><strong>Voir plus <MDBIcon icon="angle-double-right" /></strong></Link>
-        </p>
       </div>
     )
   }

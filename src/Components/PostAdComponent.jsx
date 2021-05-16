@@ -157,7 +157,7 @@ export default class PostAdComponent extends Component {
 
   render() {
     if (this.state.redirect) {
-      return (<Redirect to="/asso-dashboard" />)
+      return (<Redirect to="/association-dashboard" />)
     }
     return (
       <>

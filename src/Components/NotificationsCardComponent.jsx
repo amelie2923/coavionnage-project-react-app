@@ -36,9 +36,9 @@ export default class NotificationsCardComponent extends Component {
           <MDBCard>
             <MDBCardBody>
               <MDBCardTitle>Notifications</MDBCardTitle>
-              {this.state.notifications && this.state.notifications.length && this.state.notifications.map((notification, i) => {
+              {this.state.notifications && this.state.notifications.length && this.state.notifications.map((notification) => {
                 return (
-                  <MDBCardText>
+                  <MDBCardText key={notification.id}>
                     L'utilisateur n°{JSON.parse(notification.data).user_id} a mis votre annonce {JSON.parse(notification.data).ad_id} dans ses favoris
                   </MDBCardText>
                 )

@@ -8,72 +8,48 @@ import { Link } from 'react-router-dom';
 // dayjs().format()
 import DayJS from 'react-dayjs';
 
-export default class AdsGalleryComponent extends Component {
+export default class GetFlightsComponent extends Component {
   constructor() {
     super()
     this.state = {
-      ads: [],
-      // latestAds: []
+      planetickets: []
     };
   };
 
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/api/ads')
+    axios.get('http://127.0.0.1:8000/api/planetickets')
       .then(res => {
-        this.setState({ ads: res.data })
-        console.log(res.data)
+        this.setState({ planetickets: res.data })
+        console.log(res)
       })
       .catch(error => {
         console.log(error.response)
       })
-
-    // axios.get('http://127.0.0.1:8000/api/ads/latest')
-    //   .then(res => {
-    //     this.setState({ latestAds: res.data })
-    //     console.log(res)
-    //   })
-    //   .catch(error => {
-    //     console.log(error.response)
-    //   })
   }
 
   render() {
-    console.log(this.state.ads)
     return (
       <div className="container">
         <div className="row d-flex justify-content-center">
-          {this.state.ads.map((ad, i) =>
-            i < 3 &&
+          {this.state.planetickets.map((planeticket, i) =>
             <MDBCol md='4'>
               <MDBCard className="mx-2 my-3" narrow>
-                <MDBView cascade>
-                  <MDBCardImage
-                    key={i}
-                    hover
-                    overlay='white-slight'
-                    className='card-img-top'
-                    src={`http://127.0.0.1:8000/storage/pictures/${ad.image}`}
-                    alt='animal image'
-                  />
-                </MDBView>
-
                 <MDBCardBody>
                   <h5 className='primary-text text-center'>
-                    <MDBIcon icon="paw" /> {ad.animal_name}
+                    {/* <MDBIcon icon="paw" /> {ad.animal_name} */}
                   </h5>
-
                   <MDBCardTitle className='font-weight-bold'>
                     <MDBCardText className="text-center my-1">
-                      <p><MDBIcon icon="plane-departure" /> {ad.departure_city}{' '}<MDBIcon icon="plane-arrival" /> {ad.arrival_city}</p>
+                      <p><MDBIcon icon="plane-departure" /> {planeticket.departure_city}{' '}<MDBIcon icon="plane-arrival" /> {planeticket.arrival_city}</p>
                       {/* Autre design departure -> arrival with icon or plane or arrow */}
-                      À partir du: {' '}
+                      Départ le : {' '}
                       <DayJS format="DD-MM-YYYY">
-                        {ad.date}
+                        {planeticket.date}
                       </DayJS>
                     </MDBCardText>
                   </MDBCardTitle>
                   <p className="text-center">
-                    <Link className="btn primary" to={`/ads/${ad.id}`}>Je l'aide</Link>
+                    <Link className="btn primary" to={`/planetickets/${planeticket.id}`}>Ce vol m'intéresse</Link>
                   </p>
                 </MDBCardBody>
               </MDBCard>
@@ -81,7 +57,7 @@ export default class AdsGalleryComponent extends Component {
           )}
         </div>
         <p className="text-right">
-          <Link to="/all-ads" className="orange-text text-right"><strong>Voir plus <MDBIcon icon="angle-double-right" /></strong></Link>
+          <Link className="white-text text-right"><strong>Voir plus <MDBIcon icon="angle-double-right" /></strong></Link>
         </p>
       </div>
     )

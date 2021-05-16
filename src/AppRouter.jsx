@@ -8,6 +8,7 @@ import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
 import RegisterAssoPage from './Pages/RegisterAssoPage';
 import AssociationDashboardPage from './Pages/AssociationDashboardPage';
+import TravellerDashboardPage from './Pages/TravellerDashboardPage';
 import ForgotPasswordPage from './Pages/ForgotPasswordPage';
 import ProfilePage from './Pages/ProfilePage';
 import PostAdComponent from './Components/PostAdComponent';
@@ -17,6 +18,14 @@ import GetAdComponent from './Components/GetAdComponent';
 import EditAdComponent from './Components/EditAdComponent';
 import AuthenticationComponent from './Components/AuthenticationComponent';
 import GetFlightComponent from './Components/GetFlightComponent';
+import CreateAlertComponent from './Components/CreateAlertComponent';
+import GetAdsComponent from './Components/GetAdsComponent';
+import GetFlightsComponent from './Components/GetFlightsComponent';
+import FlightsGalleryComponent from './Components/FlightsGalleryComponent';
+import AdsGalleryComponent from './Components/AdsGalleryComponent';
+import AllAdsPage from './Pages/AllAdsPage';
+import AllFlightsPage from './Pages/AllFlightsPage';
+
 // import FlightsGalleryComponent from './Components/FlightsGalleryComponent';
 // import PDFGeneratePage from './Pages/PDFGeneratePage';
 
@@ -28,7 +37,8 @@ export class AppRouter extends Component {
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/association-register" component={RegisterAssoPage} />
         <Route exact path="/login" component={LoginPage} />
-        <Route path="/asso-dashboard" component={AssociationDashboardPage} />
+        <Route path="/association-dashboard" component={AssociationDashboardPage} />
+        <Route path="/traveller-dashboard" component={TravellerDashboardPage} />
         <Route path="/forgot-password" component={ForgotPasswordPage} />
         <Route path="/ads/edit/:id" component={EditAdComponent} />
         <Route path="/ads/new" component={PostAdComponent} />
@@ -41,6 +51,9 @@ export class AppRouter extends Component {
           <Route exact path="/" component={PublicHomePage} />
           <Route path="/ads/:id" component={GetAdComponent} />
           <Route path="/planetickets/:id" component={GetFlightComponent} />
+          <Route path="/create-alert" component={CreateAlertComponent} />
+          <Route path="/all-ads" component={AllAdsPage} />
+          <Route path="/all-flights" component={AllFlightsPage} />
         </>
       </Switch>
     )

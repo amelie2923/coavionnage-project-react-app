@@ -84,7 +84,7 @@ export default class RegisterComponent extends Component {
           className='d-flex justify-content-center align-items-center'>
           <MDBCol md="6">
             <MDBCard>
-              <div className="header pt-3 blue-gradient">
+              <div className="header pt-3 peach-gradient">
                 <MDBRow className="d-flex justify-content-center">
                   <h3 className="white-text mb-3 pt-3 font-weight-bold">
                     Inscription
@@ -147,7 +147,7 @@ export default class RegisterComponent extends Component {
                     </MDBBtn> */}
                     <MDBBtn
                       type="submit"
-                      gradient="blue"
+                      gradient="peach"
                       className="btn-block z-depth-1a"
                     >
                       S'inscrire
@@ -156,31 +156,16 @@ export default class RegisterComponent extends Component {
                 </form>
               </MDBCardBody>
               <p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">
-
                 ou s'inscrire avec :
                   </p>
               <div className="row my-3 d-flex justify-content-center">
-                <MDBBtn
-                  href="http://127.0.0.1:8000/auth/redirect/facebook"
-                  type="button"
-                  color="white"
-                  className="mr-md-3 z-depth-1a"
-                >
-                  <MDBIcon fab icon="facebook-f" className="blue-text text-center" />
-                </MDBBtn>
-                <MDBBtn
-                  href="http://127.0.0.1:8000/auth/redirect/google"
-                  type="button"
-                  color="white"
-                  className="z-depth-1a"
-                >
-                  <MDBIcon fab icon="google" className="blue-text" />
-                </MDBBtn>
+                <a href="http://127.0.0.1:8000/auth/redirect/google" className="social-icons"><MDBIcon fab icon="facebook" /></a>
+                <a href="http://127.0.0.1:8000/auth/redirect/google" className="social-icons align-middle"><MDBIcon fab icon="google" /></a>
               </div>
               <MDBModalFooter className="mx-5 pt-3 mb-1">
                 <p className="font-small grey-text d-flex justify-content-end">
                   Déjà membre ?
-                <a href="/login" className="blue-text ml-1">
+                <a href="/login" className="orange-text ml-1">
                     Se connecter
                 </a>
                 </p>

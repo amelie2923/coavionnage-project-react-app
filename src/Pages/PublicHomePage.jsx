@@ -5,7 +5,8 @@ import AdsGalleryComponent from '../Components/AdsGalleryComponent';
 import FlightsGalleryComponent from '../Components/FlightsGalleryComponent';
 import AboutSection from '../Sections/AboutSection';
 import FooterSection from '../Sections/FooterSection';
-import { MDBBtn } from 'mdbreact';
+import { MDBBtn, MDBIcon } from 'mdbreact';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import SearchDateFormComponent from '../Components/SearchDateFormComponent';
 
@@ -30,7 +31,7 @@ export default class PublicHomePage extends Component {
         <FlightsGalleryComponent />
         <h1 className="mt-5 mb-5 text-center">Comment ça marche ?</h1>
         <AboutSection />
-        <SearchDateFormComponent />
+        {/* <SearchDateFormComponent /> */}
         <FooterSection />
       </>
     )

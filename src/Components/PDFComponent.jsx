@@ -5,43 +5,58 @@ import { Document, Page, Image, Text, View, StyleSheet } from '@react-pdf/render
 const styles = StyleSheet.create({
   page: {
     flexDirection: 'row',
-    backgroundColor: '#E4E4E4'
+    backgroundColor: '#FFF',
+    border: '20 double #ffb300',
+  },
+  title: {
+    fontSize: '40',
+    marginBottom: 20,
+  },
+  margin: {
+    marginBottom: 10,
   },
   section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1
-  }
+    margin: 20,
+    padding: 20,
+    flexGrow: 1,
+    textAlign: 'center',
+  },
+  imageSection: {
+    height: 300,
+    width: 300,
+    alignSelf: 'center'
+  },
 });
+
+function returnSrc() {
+  const path = "https://www.caniprof.com/wp-content/uploads/2018/09/Chihuahua.jpg";
+  const selectedMethod = 'GET';
+  return { uri: path, method: selectedMethod, body: '', headers: '' };
+}
 
 // Create Document Component
 const PDFComponent = (props) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
+        <Text style={styles.title}>{props.animal_name} recherche un vol !</Text>
+        <Image style={styles.imageSection} src={returnSrc()} />
+        <Text style={styles.margin}>Ville de départ : {props.departure_city}</Text>
+        <Text style={styles.margin}>Ville d'arrivée : {props.arrival_city}</Text>
+        <Text style={styles.margin}>C'est gratuit et l'association s'occupe de tout! </Text>
+        <Text style={styles.margin}>Contacter l'association {props.user_name} :</Text>
+        <Text style={styles.margin}>Email : {props.email}</Text>
+      </View>
+      {/* <View style={styles.section}>
         <Text>{props.animal_name}</Text>
-      </View>
-      <View style={styles.section}>
-        {/* <Image src={`http://127.0.0.1:8000/storage/pictures/${props.image}`} />
-        {console.log(props.image)}
-        {console.log(`http://127.0.0.1:8000/storage/pictures/${props.image}`)} */}
-        {/* <Image
-          style={{ width: 100, height: 100, borderRadius: 50 }}
-          source={{
-            crossorigin: "anonymous",
-            uri: `http://127.0.0.1:8000/storage/pictures/${props.image}`,
-            headers: { Pragma: 'no-cache', 'Cache-Control': 'no-cache', 'Access-Control-Allow-Origin': '*' },
-          }}
-        /> */}
-        <Image
-          src={`http://127.0.0.1:8000/storage/pictures/${props.image}` + '?noCache=' + Math.random().toString()}
-          source={{
-            header: {
-              'Access-Control-Allow-Origin': '*'
+      </View> */}
+      {/* <Image
+          source={
+            {
+              uri: `https://fr.wikipedia.org/wiki/Image_de_test_standard#/media/Fichier:SIPI_Jelly_Beans_4.1.07.tiff`, method: {}, headers: { "Access-Control-Allow-Origin": "*", crossOrigin: "anonymous", Pragma: 'no-cache', 'Cache-Control': 'no-cache' }, body: ''
             }
-          }}
-        />
-      </View>
+          }
+        /> */}
     </Page>
   </Document>
 );

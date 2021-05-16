@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MDBBadge, MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBCol, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBIcon } from 'mdbreact';
+import { MDBBtn, MDBCol, MDBCard, MDBCardBody } from 'mdbreact';
 import axios from 'axios';
 import DayJS from 'react-dayjs';
 
@@ -9,24 +9,9 @@ export default class SearchDateFormComponent extends Component {
 
     this.state = {
       date: '',
+      afterSearchResponse: [],
     };
   };
-
-  componentDidMount() {
-    let headers = {
-      headers: {
-        'API-TOKEN': localStorage.getItem('token')
-      }
-    }
-
-    axios.get(`http://127.0.0.1:8000/api/ads/search/2021-03-26`, headers)
-      .then(res => {
-        this.setState({ date: res.data })
-      })
-      .catch(error => {
-        console.log(error.response)
-      })
-  }
 
   handleDateChange = event => {
     this.setState({
@@ -34,17 +19,35 @@ export default class SearchDateFormComponent extends Component {
     });
   };
 
+  fetchAds = () => {
+    let headers = {
+      headers: {
+        'API-TOKEN': localStorage.getItem('token')
+      }
+    }
+
+    axios.get('http://127.0.0.1:8000/api/ads?date=' + this.state.date, headers)
+      .then(res => {
+        this.setState({ afterSearchResponse: res.data })
+        console.log(this.state.afterSearchResponse);
+
+      })
+      .catch(error => {
+        console.log(error.response)
+      })
+  }
+
   render() {
-    console.log(this.state.date);
     // body form ? to get date
     return (
       <div className="container my-5">
         <div className="row">
-          <MDBCol md='6'>
+          <MDBCol lg='4' md='4'>
             <MDBCard>
               <MDBCardBody>
                 <input type="date" id="start" name="trip-start"
                   min="2021-01-01" onChange={this.handleDateChange} />
+                <MDBBtn color="deep-orange" size="md" onClick={this.fetchAds}>Chercher</MDBBtn>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>

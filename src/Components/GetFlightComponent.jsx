@@ -6,12 +6,13 @@ import axios from 'axios';
 import LoaderComponent from './LoaderComponent';
 import DayJS from 'react-dayjs';
 
-export default class AdComponent extends Component {
+export default class GetFlightComponent extends Component {
   constructor() {
     super()
     this.state = {
       redirect: false,
       planeticket: {},
+      user: {},
     };
   };
 
@@ -34,6 +35,19 @@ export default class AdComponent extends Component {
     } else {
       this.setState({ redirect: true })
     }
+
+    let headers = {
+      headers: {
+        'API-TOKEN': localStorage.getItem('token')
+      }
+    }
+    axios.get(`http://127.0.0.1:8000/api/users/profile`, headers)
+      .then(res => {
+        this.setState({ user: res.data })
+      })
+      .catch(error => {
+        console.log(error.response)
+      })
   }
 
   render() {
@@ -68,7 +82,7 @@ export default class AdComponent extends Component {
         </MDBCarousel> */}
         <div className="container my-5">
           {
-            this.state.planeticket && this.state.planeticket.user
+            this.state.planeticket && this.state.planeticket.user && this.state.user && this.state.user.profile
               ?
               <div className="row">
                 <MDBCol md='6'>
@@ -76,7 +90,7 @@ export default class AdComponent extends Component {
                     <MDBCardBody>
                       {/* <MDBCardTitle>{this.state.planeticket.animal_name}</MDBCardTitle> */}
                       <h5>
-                        <MDBBadge color="primary">{this.state.planeticket.user.name}</MDBBadge>
+                        <MDBBadge color="deep-orange">{this.state.planeticket.user.name}</MDBBadge>
                       </h5>
                       <MDBCardText>Propose un vol pour: {this.state.planeticket.arrival_city}</MDBCardText>
                       <MDBCardText>Au départ de: {this.state.planeticket.departure_city}</MDBCardText>
@@ -103,6 +117,23 @@ export default class AdComponent extends Component {
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol> */}
+                <MDBCol md='6'>
+                  <MDBCard className="mb-3">
+                    <MDBCardBody className="text-center">
+                      <div>
+                        <h4>Contacter {this.state.planeticket.user.name} ?</h4>
+                        <br />
+                        {this.state.planeticket.user.email}<br />
+                        {this.state.user.profile.phone}<br />
+                      </div>
+                      {/* Maps
+                      Scanner le QR Code à l'aide de l'application sur votre mobile
+                      -QR Code-
+                      Ou contacter directement l'association :
+                      -Mail asso- */}
+                    </MDBCardBody>
+                  </MDBCard>
+                </MDBCol>
               </div>
               :
               <div className="d-flex justify-content-center">
