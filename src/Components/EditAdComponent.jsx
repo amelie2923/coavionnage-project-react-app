@@ -191,7 +191,7 @@ export default class EditAdComponent extends Component {
                 <MDBInput type="textarea" value={this.state.description} onChange={this.handleDescriptionChange} label="Description de votre annonce" rows="5" />
                 <div className="form-group">
                   <label style={{ color: '#757575' }} htmlFor="exampleFormControlFile1">Ajouter une photo</label>
-                  <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={this.handleImageChange} />
+                  <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImageChange} />
                 </div>
                 {/* <MDBBtn type="button" color='light-blue'>Enregistrer en tant que brouillon</MDBBtn> */}
                 <MDBBtn type="submit" color='light-blue'>

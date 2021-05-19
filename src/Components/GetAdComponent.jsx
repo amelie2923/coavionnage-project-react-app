@@ -124,7 +124,8 @@ export default class GetAdComponent extends Component {
         {/* {!this.state.onClicked ? */}
         <div className="container my-5">
           {
-            this.state.ad && this.state.ad.user && this.state.user && this.state.user.profile
+            this.state.ad && this.state.ad.user && this.state.user
+              // && this.state.user.profile
               ?
               <div className="row">
                 <>
@@ -187,8 +188,15 @@ export default class GetAdComponent extends Component {
                           /> <br />
                         Ou contacter directement l'association :<br />
                           {this.state.ad.user.name}<br />
-                          {this.state.ad.user.email}<br />
-                          {this.state.user.profile.phone}<br />
+                          {this.state.user.profile ?
+                            <>
+                              {this.state.ad.user.email}< br />
+                              {this.state.user.profile.phone}<br />
+                            </>
+                            :
+                            <>
+                            </>
+                          }
                         </div>
                         {/* Maps
                       Scanner le QR Code à l'aide de l'application sur votre mobile

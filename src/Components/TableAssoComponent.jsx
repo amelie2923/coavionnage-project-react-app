@@ -16,14 +16,21 @@ export default class TableAssoComponent extends Component {
   };
 
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/api/ads')
-      .then(res => {
-        this.setState({ ads: res.data })
-        console.log(res.data)
-      })
-      .catch(error => {
-        console.log(error.response)
-      })
+    if (localStorage.getItem('token')) {
+      let headers = {
+        headers: {
+          'API-TOKEN': localStorage.getItem('token')
+        }
+      }
+      axios.get('http://127.0.0.1:8000/api/association/ads', headers)
+        .then(res => {
+          this.setState({ ads: res.data })
+          console.log(res.data)
+        })
+        .catch(error => {
+          console.log(error.response)
+        })
+    }
   }
 
   handleDeleteAd = (id, event) => {

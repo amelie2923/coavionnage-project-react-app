@@ -61,7 +61,6 @@ export default class NavbarComponent extends Component {
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           {/* <MDBNavbarNav right>
-
           </MDBNavbarNav> */}
           <MDBNavbarNav right>
             <MDBNavItem active>

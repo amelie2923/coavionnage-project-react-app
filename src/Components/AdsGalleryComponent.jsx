@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBView, MDBIcon } from 'mdbreact';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 // import * as dayjs from 'dayjs'
 // import 'dayjs/locale/fr' // import locale
 
@@ -13,6 +13,7 @@ export default class AdsGalleryComponent extends Component {
     super()
     this.state = {
       ads: [],
+      redirect: true,
       // latestAds: []
     };
   };
@@ -37,6 +38,18 @@ export default class AdsGalleryComponent extends Component {
     //   })
   }
 
+  // redirectHandler = () => {
+  //   if (localStorage.getItem('token')) {
+  //     this.setState({ redirect: false })
+  //     this.renderRedirect();
+  //   }
+  // }
+  // renderRedirect = () => {
+  //   if (this.state.redirect) {
+  //     return <Redirect to='/login' />
+  //   }
+  // }
+
   render() {
     console.log(this.state.ads)
     return (
@@ -56,7 +69,6 @@ export default class AdsGalleryComponent extends Component {
                     alt='animal image'
                   />
                 </MDBView>
-
                 <MDBCardBody>
                   <h5 className='primary-text text-center'>
                     <MDBIcon icon="paw" /> {ad.animal_name}
@@ -73,7 +85,8 @@ export default class AdsGalleryComponent extends Component {
                     </MDBCardText>
                   </MDBCardTitle>
                   <p className="text-center">
-                    <Link className="btn primary" to={`/ads/${ad.id}`}>Je l'aide</Link>
+                    {/* <Link onClick={this.redirectHandler} className="btn primary" to={`/ads/${ad.id}`}>Je l'aide</Link> */}
+                    <Link onClick={this.redirectHandler} className="btn primary">Je l'aide</Link>
                   </p>
                 </MDBCardBody>
               </MDBCard>

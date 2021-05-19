@@ -12,7 +12,7 @@ export default class AllAdsPage extends Component {
       <div>
         <NavbarComponent />
         <p></p>
-        <SearchDateFormComponent />
+        {/* <SearchDateFormComponent /> */}
         {/* <Link className="btn secondary" to="/create-alert"><MDBIcon icon="bell" /> Créer une alerte</Link> */}
         {/* <CreateAlertComponent /> */}
         <GetAdsComponent />

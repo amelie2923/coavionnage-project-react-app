@@ -33,6 +33,7 @@ export default class AdsGalleryComponent extends Component {
       <div className="container-fluid orange-background">
         <div className="row d-flex justify-content-center">
           {this.state.planetickets.map((planeticket, i) =>
+            i < 3 &&
             <MDBCol md='4'>
               <MDBCard className="mx-2 my-3" narrow>
                 <MDBCardBody>
