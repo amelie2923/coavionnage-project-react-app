@@ -51,7 +51,7 @@ export default class PostAdComponent extends Component {
   };
 
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/api/typesearchs/')
+    axios.get('https://api.animal-airline.com/public/api/typesearchs')
       .then(res => {
         let typeSearchs = res.data.map(typesearch => {
           return { value: typesearch.id, display: typesearch.name }
@@ -138,7 +138,7 @@ export default class PostAdComponent extends Component {
       }
     }
 
-    axios.post('http://127.0.0.1:8000/api/ads/add', bodyFormData, headers)
+    axios.post('https://api.animal-airline.com/public/api/ads/add', bodyFormData, headers)
       .then(res => {
         this.setState({ redirect: true })
         // this.setState({ adSubmitted: true });
@@ -169,22 +169,22 @@ export default class PostAdComponent extends Component {
                 Rechercher un vol
               </h1>
               <form method="POST" onSubmit={this.handleSubmit} encType="multipart/form-data">
-                <MDBInput label="Nom de l'animal" onChange={this.handleAnimalNameChange} group type="text" validate />
+                <MDBInput label="Nom de l'animal" onChange={this.handleAnimalNameChange} group type="text" validate required />
                 <p style={{ color: '#757575' }}>Type d'animal :</p>
-                <select value={this.state.type_search_id}
+                <select required value={this.state.type_search_id}
                   onChange={this.handleTypeSearch}>
                   {this.state.options.map((option, i) => <option key={i} value={option.value}>{option.display}</option>)}
                 </select>
                 <p style={{ color: '#757575' }}>Date de départ :</p>
                 <input type="date" id="start" name="trip-start"
-                  min={minDate} onChange={this.handleDateChange} />
-                <MDBInput label="Ville de départ" onChange={this.handleDepartureCityChange} group type="text" validate />
-                <MDBInput label="Ville d'arrivée" onChange={this.handleArrivalCityChange} group type="text" validate />
+                  min={minDate} onChange={this.handleDateChange} required />
+                <MDBInput label="Ville de départ" onChange={this.handleDepartureCityChange} group type="text" validate required />
+                <MDBInput label="Ville d'arrivée" onChange={this.handleArrivalCityChange} group type="text" validate required />
                 <MDBInput label="Compagnie" onChange={this.handleCompanyChange} group type="text" validate />
-                <MDBInput type="textarea" onChange={this.handleDescriptionChange} label="Description de votre annonce" rows="5" />
+                <MDBInput type="textarea" onChange={this.handleDescriptionChange} label="Description de votre annonce" rows="5" required />
                 <div className="form-group">
                   <label style={{ color: '#757575' }} htmlFor="exampleFormControlFile1">Ajouter une photo</label>
-                  <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImageChange} />
+                  <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImageChange} required />
                 </div>
                 {/* <MDBBtn type="button" color='light-blue'>Enregistrer en tant que brouillon</MDBBtn> */}
                 <MDBBtn type="submit" color='light-blue'>

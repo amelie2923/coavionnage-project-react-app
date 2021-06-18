@@ -36,7 +36,7 @@ export default class EditAdComponent extends Component {
           'API-TOKEN': localStorage.getItem('token')
         }
       }
-      axios.get(`http://127.0.0.1:8000/api/ads/${id}`, headers)
+      axios.get(`https://api.animal-airline.com/public/api/ads/${id}`, headers)
         .then(res => {
           this.setState({
             animal_name: res.data.animal_name,
@@ -54,7 +54,7 @@ export default class EditAdComponent extends Component {
           console.log(error);
         })
 
-      axios.get('http://127.0.0.1:8000/api/typesearchs/', headers)
+      axios.get('https://api.animal-airline.com/public/api/typesearchs', headers)
         .then(res => {
           let typeSearchs = res.data.map(typesearch => {
             return { value: typesearch.id, display: typesearch.name }
@@ -143,7 +143,7 @@ export default class EditAdComponent extends Component {
         }
       }
 
-      axios.post(`http://127.0.0.1:8000/api/ads/edit/${id}`, bodyFormData, headers)
+      axios.post(`https://api.animal-airline.com/public/api/ads/edit/${id}`, bodyFormData, headers)
         .then(res => {
           this.setState({ redirect: true })
           console.log(res)

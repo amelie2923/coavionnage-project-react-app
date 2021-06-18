@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MDBBadge, MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBCol, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBIcon } from 'mdbreact';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 // import NavbarComponent from './NavbarComponent';
 import LoaderComponent from './LoaderComponent';
@@ -25,7 +25,7 @@ export default class GetFlightComponent extends Component {
         }
       }
 
-      axios.get(`http://127.0.0.1:8000/api/planetickets/${id}`, headers)
+      axios.get(`https://api.animal-airline.com/public/api/planetickets/${id}`, headers)
         .then(res => {
           this.setState({ planeticket: res.data })
         })
@@ -36,28 +36,28 @@ export default class GetFlightComponent extends Component {
       this.setState({ redirect: true })
     }
 
-    let headers = {
-      headers: {
-        'API-TOKEN': localStorage.getItem('token')
-      }
-    }
-    axios.get(`http://127.0.0.1:8000/api/users/profile`, headers)
-      .then(res => {
-        this.setState({ user: res.data })
-      })
-      .catch(error => {
-        console.log(error.response)
-      })
+    // let headers = {
+    //   headers: {
+    //     'API-TOKEN': localStorage.getItem('token')
+    //   }
+    // }
+    // axios.get(`https://api.animal-airline.com/public/api/users/profile`, headers)
+    //   .then(res => {
+    //     this.setState({ user: res.data })
+    //   })
+    //   .catch(error => {
+    //     console.log(error.response)
+    //   })
   }
 
   render() {
     if (this.state.redirect) {
-      return (<Redirect to="/" />)
+      return (<Redirect to="/login" />)
     };
     console.log(this.state.planeticket)
     return (
       <>
-        {/* <MDBCarousel
+        <MDBCarousel
           activeItem={1}
           length={1}
           showControls={false}
@@ -70,7 +70,7 @@ export default class GetFlightComponent extends Component {
               <MDBCarouselItem itemId="1">
                 <img
                   className="img-fluid mx-auto d-block"
-                  src={`http://127.0.0.1:8000/storage/pictures/${this.state.ad.image}`}
+                  src="/images/eva-darron-oCdVtGFeDC0-unsplash.jpg"
                   alt=""
                   style={{
                     height: '460px',
@@ -79,10 +79,13 @@ export default class GetFlightComponent extends Component {
               </MDBCarouselItem>
             </MDBView>
           </MDBCarouselInner>
-        </MDBCarousel> */}
+        </MDBCarousel>
+        <MDBCol className="text-center" md='6'>
+          <Link className="orange-text" to='/all-flights'><MDBIcon icon="angle-left" /> Retour aux annonces</Link>
+        </MDBCol>
         <div className="container my-5">
           {
-            this.state.planeticket && this.state.planeticket.user && this.state.user && this.state.user.profile
+            this.state.planeticket && this.state.planeticket.user && this.state.user
               ?
               <div className="row">
                 <MDBCol md='6'>
@@ -123,8 +126,15 @@ export default class GetFlightComponent extends Component {
                       <div>
                         <h4>Contacter {this.state.planeticket.user.name} ?</h4>
                         <br />
-                        {this.state.planeticket.user.email}<br />
-                        {this.state.user.profile.phone}<br />
+                        {this.state.planeticket.user.profile !== null ?
+                          <>
+                            {this.state.planeticket.user.profile.email}< br />
+                            {this.state.planeticket.user.profile.phone}<br />
+                          </>
+                          :
+                          <>
+                          </>
+                        }
                       </div>
                       {/* Maps
                       Scanner le QR Code à l'aide de l'application sur votre mobile

@@ -26,14 +26,11 @@ class CTAIntroComponent extends React.Component {
                 <MDBCol md='6' className='text-center text-md-left mt-xl-5 mb-5'>
                   <MDBAnimation type='fadeInLeft' delay='.3s'>
                     <h1 className='h1-responsive primary-text font-weight-bold mt-sm-5'>
-                      Aider un animal grâce à votre billet d'avion
+                      Aidez un animal grâce à votre billet d'avion
                   </h1>
                     <hr className='primary' />
                     <h6 className='mb-4'>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Rem repellendus quasi fuga nesciunt dolorum nulla magnam
-                      veniam sapiente, fugiat! Commodi sequi non animi ea dolor
-                      molestiae iste.
+                      Chiens et chats à adopter cherchent accompagnant pour la Métropole !
                   </h6>
                     <p><Link className="btn primary" to={''}><MDBIcon icon='search' className='mr-2' /> Association : Rechercher un vol</Link>
                       <Link className="btn primary" to={''}><MDBIcon icon='user' /> Voyageur : Proposer votre vol</Link></p>

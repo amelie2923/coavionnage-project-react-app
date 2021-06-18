@@ -27,7 +27,7 @@ export default class GetAdComponent extends Component {
         }
       }
 
-      axios.get(`http://127.0.0.1:8000/api/ads/${id}`, headers)
+      axios.get(`https://api.animal-airline.com/public/api/ads/${id}`, headers)
         .then(res => {
           // this.setState({ ad: res.data })
           this.setState({ ad: res.data }, () => {
@@ -37,22 +37,23 @@ export default class GetAdComponent extends Component {
         .catch(error => {
           console.log(error.response)
         })
-    } else {
+    }
+    else {
       this.setState({ redirect: true })
     }
 
-    let headers = {
-      headers: {
-        'API-TOKEN': localStorage.getItem('token')
-      }
-    }
-    axios.get(`http://127.0.0.1:8000/api/users/profile`, headers)
-      .then(res => {
-        this.setState({ user: res.data })
-      })
-      .catch(error => {
-        console.log(error.response)
-      })
+    // let headers = {
+    //   headers: {
+    //     'API-TOKEN': localStorage.getItem('token')
+    //   }
+    // }
+    // axios.get(`https://api.animal-airline.com/public/api/profile`, headers)
+    //   .then(res => {
+    //     this.setState({ user: res.data })
+    //   })
+    //   .catch(error => {
+    //     console.log(error.response)
+    //   })
   }
 
   checkFavorite() {
@@ -62,7 +63,7 @@ export default class GetAdComponent extends Component {
       }
     }
 
-    axios.get(`http://127.0.0.1:8000/api/ads/${this.state.ad.id}/checkFavorite`, headers)
+    axios.get(`https://api.animal-airline.com/public/api/ads/${this.state.ad.id}/checkFavorite`, headers)
       .then(res => {
         this.setState({ favorite: res.data })
       })
@@ -78,7 +79,7 @@ export default class GetAdComponent extends Component {
       }
     }
 
-    axios.get(`http://127.0.0.1:8000/api/ads/${this.state.ad.id}/handleFavorite`, headers)
+    axios.get(`https://api.animal-airline.com/public/api/ads/${this.state.ad.id}/handleFavorite`, headers)
       .then(res => {
         this.checkFavorite();
       })
@@ -89,9 +90,9 @@ export default class GetAdComponent extends Component {
 
   render() {
     if (this.state.redirect) {
-      return (<Redirect to="/" />)
+      return (<Redirect to="/login" />)
     };
-    console.log(this.state.user.profile)
+    console.log(this.state.ad.user)
     console.log(this.state.ad)
     return (
       <>
@@ -108,7 +109,7 @@ export default class GetAdComponent extends Component {
               <MDBCarouselItem itemId="1">
                 <img
                   className="img-fluid mx-auto d-block"
-                  src={`http://127.0.0.1:8000/storage/pictures/${this.state.ad.image}`}
+                  src={`https://api.animal-airline.com/public/public/pictures/${this.state.ad.image}`}
                   alt=""
                   style={{
                     height: '460px',
@@ -124,7 +125,7 @@ export default class GetAdComponent extends Component {
         {/* {!this.state.onClicked ? */}
         <div className="container my-5">
           {
-            this.state.ad && this.state.ad.user && this.state.user
+            this.state.ad && this.state.ad.user
               // && this.state.user.profile
               ?
               <div className="row">
@@ -149,16 +150,14 @@ export default class GetAdComponent extends Component {
                             ?
                             <>
                               <MDBIcon icon="heart red-text pr-3" onClick={() => this.handleFavorite()} /> Supprimer des favoris
-                          </>
+                            </>
                             :
                             <>
                               <MDBIcon far icon="heart" onClick={() => this.handleFavorite()} /> Ajouter en favori
-                          </>
+                            </>
                         }
-                        {/* <p className="text-center">Here scan code</p> */}
                       </MDBCardBody>
                     </MDBCard>
-                    {/* <p>Scannez mon code avec votre smartphone pour me proposer une place!</p> */}
                   </MDBCol>
                   <MDBCol md='6'>
                     <MDBCard className="mb-3">
@@ -168,7 +167,7 @@ export default class GetAdComponent extends Component {
                           {/* <p>Découvrir son association : {this.state.ad.user.name}</p> */}
                         Scanner le QR Code à l'aide de l'application sur votre mobile : <br />
                           <QRCode
-                            value={`http://127.0.0.1:8000/api/ads/${this.state.ad.id}`}
+                            value={`https://animal-airline.com/ads/${this.state.ad.id}`}
                             size={128}
                             bgColor={"#ffffff"}
                             fgColor={"#000000"}
@@ -188,10 +187,10 @@ export default class GetAdComponent extends Component {
                           /> <br />
                         Ou contacter directement l'association :<br />
                           {this.state.ad.user.name}<br />
-                          {this.state.user.profile ?
+                          {this.state.ad.user.profile !== null ?
                             <>
-                              {this.state.ad.user.email}< br />
-                              {this.state.user.profile.phone}<br />
+                              {this.state.ad.user.profile.email}< br />
+                              {this.state.ad.user.profile.phone}<br />
                             </>
                             :
                             <>

@@ -1,0 +1,4 @@
+#notifs-page .view {
+  min-height: 100vh !important;
+  height: unset !important;
+}

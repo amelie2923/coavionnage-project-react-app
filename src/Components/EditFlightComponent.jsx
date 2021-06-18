@@ -45,7 +45,7 @@ export default class EditFlightComponent extends Component {
           'API-TOKEN': localStorage.getItem('token')
         }
       }
-      axios.get(`http://127.0.0.1:8000/api/planetickets/${id}`, headers)
+      axios.get(`https://api.animal-airline.com/public/api/planetickets/${id}`, headers)
         .then(res => {
           this.setState({
             date: res.data.date,
@@ -113,7 +113,7 @@ export default class EditFlightComponent extends Component {
         }
       }
 
-      axios.post(`http://127.0.0.1:8000/api/planetickets/edit/${id}`, bodyFormData, headers)
+      axios.post(`https://api.animal-airline.com/public/api/planetickets/edit/${id}`, bodyFormData, headers)
         .then(res => {
           console.log(res.data)
         })

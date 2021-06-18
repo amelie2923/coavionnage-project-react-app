@@ -17,7 +17,7 @@ export default class SideBarComponent extends Component {
         'API-TOKEN': localStorage.getItem('token')
       }
     }
-    axios.get(`http://127.0.0.1:8000/api/users/profile`, headers)
+    axios.get(`https://api.animal-airline.com/public/api/users/profile`, headers)
       .then(res => {
         this.setState({ user: res.data })
       })
@@ -56,10 +56,16 @@ export default class SideBarComponent extends Component {
               Compte
           </MDBListGroupItem>
           </NavLink>
-          <NavLink to="/notifications">
+          <NavLink to="/notifications" activeClassName="activeClass">
             <MDBListGroupItem>
               <MDBIcon icon="bell" className="mr-3" />
               Notifications
+          </MDBListGroupItem>
+          </NavLink>
+          <NavLink to="/favorites" activeClassName="activeClass">
+            <MDBListGroupItem>
+              <MDBIcon far icon="heart" className="mr-3" />
+              Favoris
           </MDBListGroupItem>
           </NavLink>
           {/* <NavLink to="/tables" activeClassName="activeClass">

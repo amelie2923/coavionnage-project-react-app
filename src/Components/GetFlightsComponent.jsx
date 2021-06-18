@@ -17,7 +17,7 @@ export default class GetFlightsComponent extends Component {
   };
 
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/api/planetickets')
+    axios.get('https://api.animal-airline.com/public/api/planetickets')
       .then(res => {
         this.setState({ planetickets: res.data })
         console.log(res)

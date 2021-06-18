@@ -26,7 +26,7 @@ export default class SearchDateFormComponent extends Component {
       }
     }
 
-    axios.get('http://127.0.0.1:8000/api/ads?date=' + this.state.date, headers)
+    axios.get('https://api.animal-airline.com/public/api/ads?date=' + this.state.date, headers)
       .then(res => {
         this.setState({ afterSearchResponse: res.data })
         console.log(this.state.afterSearchResponse);

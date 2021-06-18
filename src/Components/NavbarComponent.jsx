@@ -25,7 +25,7 @@ export default class NavbarComponent extends Component {
         'API-TOKEN': localStorage.getItem('token')
       }
     }
-    axios.get(`http://127.0.0.1:8000/api/users/profile`, headers)
+    axios.get(`https://api.animal-airline.com/public/api/users/profile`, headers)
       .then(res => {
         this.setState({ user: res.data })
       })
@@ -36,11 +36,10 @@ export default class NavbarComponent extends Component {
 
   handleLogout = () => {
     let token = localStorage.getItem('token');
-    axios.post("http://127.0.0.1:8000/api/logout", [], { headers: { 'Authorization': 'API-TOKEN ' + token } }).then(res => {
+    axios.post("https://api.animal-airline.com/public/api/logout", [], { headers: { 'Authorization': 'API-TOKEN ' + token } }).then(res => {
       localStorage.setItem('token', '');
       localStorage.clear();
       this.setState({ redirect: true })
-      console.log(res.data)
     });
   };
 
@@ -92,12 +91,12 @@ export default class NavbarComponent extends Component {
                         {this.state.user.role_id === 1 ?
                           <>
                             <MDBDropdownItem className="text-center"><Link to="/association-dashboard">Tableau de bord</Link></MDBDropdownItem>
-                            <MDBDropdownItem className="text-center"><Link to="/association-dashboard">Créer une annonce</Link></MDBDropdownItem>
+                            <MDBDropdownItem className="text-center"><Link to="/ads/new">Créer une annonce</Link></MDBDropdownItem>
                           </>
                           :
                           <>
                             <MDBDropdownItem className="text-center"><Link to="/traveller-dashboard">Tableau de bord</Link></MDBDropdownItem>
-                            <MDBDropdownItem className="text-center"><Link to="/traveller-dashboard">Ajouter un billet d'avion</Link></MDBDropdownItem>
+                            <MDBDropdownItem className="text-center"><Link to="/planetickets/new">Ajouter un billet d'avion</Link></MDBDropdownItem>
                           </>
                         }
                         <MDBDropdownItem className="text-center" onClick={() => this.handleLogout()}>Déconnexion</MDBDropdownItem>

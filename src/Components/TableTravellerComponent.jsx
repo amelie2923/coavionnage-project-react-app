@@ -15,7 +15,7 @@ export default class TableTravellerComponent extends Component {
   };
 
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/api/planetickets')
+    axios.get('https://api.animal-airline.com/public/api/planetickets')
       .then(res => {
         this.setState({ planetickets: res.data })
         console.log(res)
@@ -26,7 +26,7 @@ export default class TableTravellerComponent extends Component {
   }
 
   handlePlaneticket = (id, event) => {
-    axios.delete(`http://127.0.0.1:8000/api/planetickets/delete/${id}`)
+    axios.delete(`https://api.animal-airline.com/public/api/planetickets/delete/${id}`)
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -44,7 +44,7 @@ export default class TableTravellerComponent extends Component {
             <MDBCard>
               <MDBCardBody>
                 <MDBTable hover>
-                  <MDBTableHead color="blue lighten-4">
+                  <MDBTableHead color="orange lighten-4">
                     <tr>
                       <th>Date</th>
                       {/* <th>Départ</th>

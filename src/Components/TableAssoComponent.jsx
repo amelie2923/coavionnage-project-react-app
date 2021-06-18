@@ -22,7 +22,7 @@ export default class TableAssoComponent extends Component {
           'API-TOKEN': localStorage.getItem('token')
         }
       }
-      axios.get('http://127.0.0.1:8000/api/association/ads', headers)
+      axios.get('https://api.animal-airline.com/public/api/association/ads', headers)
         .then(res => {
           this.setState({ ads: res.data })
           console.log(res.data)
@@ -34,7 +34,7 @@ export default class TableAssoComponent extends Component {
   }
 
   handleDeleteAd = (id, event) => {
-    axios.delete(`http://127.0.0.1:8000/api/ads/delete/${id}`)
+    axios.delete(`https://api.animal-airline.com/public/api/ads/delete/${id}`)
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -52,7 +52,7 @@ export default class TableAssoComponent extends Component {
             <MDBCard>
               <MDBCardBody>
                 <MDBTable hover>
-                  <MDBTableHead color="blue lighten-4">
+                  <MDBTableHead color="orange lighten-4">
                     <tr>
                       <th>Nom</th>
                       <th>Date</th>

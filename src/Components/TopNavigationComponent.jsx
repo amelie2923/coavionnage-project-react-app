@@ -14,7 +14,7 @@ class TopNavigationComponent extends Component {
         'API-TOKEN': localStorage.getItem('token')
       }
     }
-    axios.get(`http://127.0.0.1:8000/api/users/profile`, headers)
+    axios.get(`https://api.animal-airline.com/public/api/users/profile`, headers)
       .then(res => {
         this.setState({ user: res.data })
       })
@@ -65,6 +65,10 @@ class TopNavigationComponent extends Component {
                         <MDBNavItem>
                             <a className="nav-link navbar-link" rel="noopener noreferrer" target="_blank" href="https://twitter.com/mdbootstrap"><MDBIcon fab icon="twitter" /></a>
                         </MDBNavItem> */}
+            <MDBNavItem>
+              <a className="border border-light mr-1 nav-link Ripple-parent" rel="noopener noreferrer" href="/">
+                <MDBIcon icon="home" className="mr-2" />Retour à l'accueil</a>
+            </MDBNavItem>
             {this.state.user.role_id === 1 ?
               <MDBNavItem>
                 <a className="border border-light mr-1 nav-link Ripple-parent" rel="noopener noreferrer" href="/ads/new">
@@ -92,6 +96,9 @@ class TopNavigationComponent extends Component {
             </MDBNavItem>
             <MDBNavItem className="sidebar-items-toggle">
               <a className="border border-light mr-1 nav-link Ripple-parent" rel="noopener noreferrer" href="/notifications">Notifications</a>
+            </MDBNavItem>
+            <MDBNavItem className="sidebar-items-toggle">
+              <a className="border border-light mr-1 nav-link Ripple-parent" rel="noopener noreferrer" href="/favorites">Favoris</a>
             </MDBNavItem>
           </MDBNavbarNav>
         </MDBCollapse>

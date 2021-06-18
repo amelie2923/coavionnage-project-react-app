@@ -14,13 +14,13 @@ export default class GetAdsComponent extends Component {
     this.state = {
       ads: [],
       searchDate: '',
-      redirect: false,
+      // redirect: false,
       // afterSearchResponse: [],
     };
   };
 
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/api/ads')
+    axios.get('https://api.animal-airline.com/public/api/ads')
       .then(res => {
         this.setState({ ads: res.data })
         console.log(res)
@@ -43,7 +43,7 @@ export default class GetAdsComponent extends Component {
       }
     }
 
-    axios.get('http://127.0.0.1:8000/api/ads?date=' + this.state.searchDate, headers)
+    axios.get('https://api.animal-airline.com/public/api/ads?date=' + this.state.searchDate, headers)
       .then(res => {
         this.setState({ ads: res.data })
         console.log(this.state.ads);
@@ -102,7 +102,7 @@ export default class GetAdsComponent extends Component {
                       hover
                       overlay='white-slight'
                       className='card-img-top'
-                      src={`http://127.0.0.1:8000/storage/pictures/${ad.image}`}
+                      src={`https://api.animal-airline.com/public/public/pictures/${ad.image}`}
                       alt='animal image'
                     />
                   </MDBView>
@@ -142,7 +142,7 @@ export default class GetAdsComponent extends Component {
                         hover
                         overlay='white-slight'
                         className='card-img-top'
-                        src={`http://127.0.0.1:8000/storage/pictures/${ad.image}`}
+                        src={`https://api.animal-airline.com/public/pictures/${ad.image}`}
                         alt='animal image'
                       />
                     </MDBView>
@@ -163,7 +163,6 @@ export default class GetAdsComponent extends Component {
                         </MDBCardText>
                       </MDBCardTitle>
                       <p className="text-center">
-                        <MDBBtn onClick={this.routeChange}></MDBBtn>
                         <Link className="btn primary" to={`/ads/${ad.id}`}>Je l'aide</Link>
                         {/* {localStorage.getItem('token') ?
                           <Link className="btn primary" to={`/ads/${ad.id}`}>Je l'aide</Link>

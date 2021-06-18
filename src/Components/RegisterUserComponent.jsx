@@ -50,15 +50,14 @@ export default class RegisterComponent extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log('inscription');
 
     let bodyFormData = new FormData();
     bodyFormData.set('name', this.state.name);
     bodyFormData.set('email', this.state.email);
     bodyFormData.set('password', this.state.password);
-    bodyFormData.set('confirm_password', this.state.password);
+    bodyFormData.set('confirm_password', this.state.confirm_password);
 
-    axios.post('http://127.0.0.1:8000/api/register', bodyFormData)
+    axios.post('https://api.animal-airline.com/public/api/register', bodyFormData)
       .then(res => {
         console.log(res.data)
         // localStorage.setItem('token', res.data.token);
@@ -80,9 +79,9 @@ export default class RegisterComponent extends Component {
     };
     return (
       <MDBContainer>
-        <MDBRow style={{ height: '100%', width: '100%', paddingTop: '5rem' }}
+        <MDBRow style={{ height: '100%', width: '100%', marginTop: '5rem', marginLeft: 'auto', marginRight: 'auto', }}
           className='d-flex justify-content-center align-items-center'>
-          <MDBCol md="6">
+          <MDBCol md="8">
             <MDBCard>
               <div className="header pt-3 peach-gradient">
                 <MDBRow className="d-flex justify-content-center">
@@ -94,52 +93,26 @@ export default class RegisterComponent extends Component {
               <MDBCardBody>
                 <form method="POST" onSubmit={this.handleSubmit}>
                   <div className="grey-text">
-                    <MDBInput
-                      label="Votre prénom"
-                      icon="user"
-                      group
-                      type="text"
-                      validate
-                      error="wrong"
-                      success="right"
-                      onChange={this.handleNameChange}
-                      className={`form-control ${this.state.errors && this.state.errors.name ? "is-invalid" : ''}`}
-                    />
-                    {this.state.errors && this.state.errors.name ? <div class="text-danger invalid-feedback"></div> : ''}
-                    <MDBInput
-                      label="Votre email"
-                      icon="envelope"
-                      group
-                      type="email"
-                      validate
-                      error="wrong"
-                      success="right"
-                      onChange={this.handleEmailChange}
-                      className={`form-control ${this.state.errors && this.state.errors.email ? "is-invalid" : ''}`}
-                    />
-                    {this.state.errors && this.state.errors.email ? <div class="text-danger invalid-feedback"></div> : ''}
-                    <MDBInput
-                      label="Votre mot de passe"
-                      icon="lock"
-                      group
-                      type="password"
-                      validate
-                      onChange={this.handlePasswordChange}
-                      className={`form-control ${this.state.errors && this.state.errors.password ? "is-invalid" : ''}`}
-                    />
-                    {this.state.errors && this.state.errors.password ? <div class="text-danger invalid-feedback"></div> : ''}
-                    <MDBInput
-                      label="Confirmer votre mot de passe"
-                      icon="exclamation-triangle"
-                      group
-                      type="password"
-                      validate
-                      error="wrong"
-                      success="right"
-                      onChange={this.handleConfirmPasswordChange}
-                      className={`form-control ${this.state.errors && this.state.errors.confirm_password ? "is-invalid" : ''}`}
-                    />
-                    {this.state.errors && this.state.errors.confirm_password ? <div class="text-danger invalid-feedback"></div> : ''}
+                    <div class="form-group">
+                      <label for="name_input">Nom</label>
+                      <input onChange={this.handleNameChange} type="text" class={`form-control ${this.state.errors && this.state.errors.name ? "is-invalid" : ''}`} id="name_input" aria-describedby="emailHelp" />
+                      {this.state.errors && this.state.errors.name ? <div class="text-danger invalide-feedback">{this.state.errors['name']}</div> : ''}
+                    </div>
+                    <div class="form-group">
+                      <label for="email_input">Adresse email</label>
+                      <input onChange={this.handleEmailChange} type="email" class={`form-control ${this.state.errors && this.state.errors.email ? "is-invalid" : ''}`} id="email_input" aria-describedby="emailHelp" />
+                      {this.state.errors && this.state.errors.email ? <div class="text-danger invalid-feedback">{this.state.errors['email']}</div> : ''}
+                    </div>
+                    <div class="form-group">
+                      <label for="password_input">Mot de passe</label>
+                      <input onChange={this.handlePasswordChange} type="password" class={`form-control ${this.state.errors && this.state.errors.password ? "is-invalid" : ''}`} id="password_input" />
+                      {this.state.errors && this.state.errors.password ? <div class="text-danger invalid-feedback">{this.state.errors['password']}</div> : ''}
+                    </div>
+                    <div class="form-group">
+                      <label for="confirm_password_input">Confirmation du mot de passe</label>
+                      <input onChange={this.handleConfirmPasswordChange} type="password" class={`form-control ${this.state.errors && this.state.errors.confirm_password ? "is-invalid" : ''}`} id="confirm_password_input" />
+                      {this.state.errors && this.state.errors.confirm_password ? <div class="text-danger invalid-feedback">{this.state.errors['confirm_password']}</div> : ''}
+                    </div>
                   </div>
                   <div className="text-center py-4 mt-3">
                     {/* <MDBBtn color="light-blue" type="submit">
@@ -159,8 +132,8 @@ export default class RegisterComponent extends Component {
                 ou s'inscrire avec :
                   </p>
               <div className="row my-3 d-flex justify-content-center">
-                <a href="http://127.0.0.1:8000/auth/redirect/google" className="social-icons"><MDBIcon fab icon="facebook" /></a>
-                <a href="http://127.0.0.1:8000/auth/redirect/google" className="social-icons align-middle"><MDBIcon fab icon="google" /></a>
+                <a href="https://api.animal-airline.com/public/auth/redirect/google" className="social-icons"><MDBIcon fab icon="facebook" /></a>
+                <a href="https://api.animal-airline.com/public/auth/redirect/google" className="social-icons align-middle"><MDBIcon fab icon="google" /></a>
               </div>
               <MDBModalFooter className="mx-5 pt-3 mb-1">
                 <p className="font-small grey-text d-flex justify-content-end">

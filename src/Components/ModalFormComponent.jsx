@@ -57,7 +57,7 @@ export default class CreateAlertComponent extends Component {
       }
     }
 
-    axios.post('http://127.0.0.1:8000/api/alerts/add', bodyFormData, headers)
+    axios.post('https://api.animal-airline.com/public/api/alerts/add', bodyFormData, headers)
       .then(res => {
         this.setState({ redirect: true })
         console.log(res.data)

@@ -25,6 +25,8 @@ import FlightsGalleryComponent from './Components/FlightsGalleryComponent';
 import AdsGalleryComponent from './Components/AdsGalleryComponent';
 import AllAdsPage from './Pages/AllAdsPage';
 import AllFlightsPage from './Pages/AllFlightsPage';
+import NotificationsPage from './Pages/NotificationsPage';
+import FavoritesPage from './Pages/FavoritesPage';
 
 // import FlightsGalleryComponent from './Components/FlightsGalleryComponent';
 // import PDFGeneratePage from './Pages/PDFGeneratePage';
@@ -37,20 +39,24 @@ export class AppRouter extends Component {
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/association-register" component={RegisterAssoPage} />
         <Route exact path="/login" component={LoginPage} />
+        <Route path="/login/:provider/:token" component={AuthenticationComponent} />
         <Route path="/association-dashboard" component={AssociationDashboardPage} />
+        <Route path="/notifications" component={NotificationsPage} />
+        <Route path="/favorites" component={FavoritesPage} />
         <Route path="/traveller-dashboard" component={TravellerDashboardPage} />
         <Route path="/forgot-password" component={ForgotPasswordPage} />
         <Route path="/ads/edit/:id" component={EditAdComponent} />
         <Route path="/ads/new" component={PostAdComponent} />
-        <Route path="/login/:provider/:token" component={AuthenticationComponent} />
         <Route path="/planetickets/new" component={PostFlightComponent} />
         <Route path="/planetickets/edit/:id" component={EditFlightComponent} />
         <Route path="/profile" component={ProfilePage} />
         {/* <Route path="/pdf/generate" component={PDFGeneratePage} /> */}
+        <Route path="/ads/:id" component={GetAdComponent} />
+        <Route path="/planetickets/:id" component={GetFlightComponent} />
         <>
           <Route exact path="/" component={PublicHomePage} />
-          <Route path="/ads/:id" component={GetAdComponent} />
-          <Route path="/planetickets/:id" component={GetFlightComponent} />
+          {/* <Route path="/ads/:id" component={GetAdComponent} />
+          <Route path="/planetickets/:id" component={GetFlightComponent} /> */}
           <Route path="/create-alert" component={CreateAlertComponent} />
           <Route path="/all-ads" component={AllAdsPage} />
           <Route path="/all-flights" component={AllFlightsPage} />

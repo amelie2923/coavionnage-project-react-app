@@ -87,7 +87,7 @@ export default class PurposeFlightComponent extends Component {
       }
     }
 
-    axios.post('http://127.0.0.1:8000/api/planetickets/add', bodyFormData, headers)
+    axios.post('https://api.animal-airline.com/public/api/planetickets/add', bodyFormData, headers)
       .then(res => {
         this.setState({ redirect: true })
         console.log(res.data)
@@ -118,11 +118,11 @@ export default class PurposeFlightComponent extends Component {
               <form method="POST" onSubmit={this.handleSubmit} encType="multipart/form-data">
                 <p style={{ color: '#757575' }}>Date et heure de départ indiquée sur le billet:</p>
                 <input type="datetime-local" id="start" name="trip-start"
-                  min="2021-01-01" onChange={this.handleDateChange} />
-                <MDBInput label="Ville de départ" onChange={this.handleDepartureCityChange} group type="text" validate />
-                <MDBInput label="Ville d'arrivée" onChange={this.handleArrivalCityChange} group type="text" validate />
-                <MDBInput label="Compagnie" onChange={this.handleCompanyChange} group type="text" validate />
-                <MDBInput type="textarea" onChange={this.handleDescriptionChange} label="Description de votre annonce" rows="5" />
+                  min="2021-01-01" onChange={this.handleDateChange} required />
+                <MDBInput label="Ville de départ" onChange={this.handleDepartureCityChange} group type="text" validate required />
+                <MDBInput label="Ville d'arrivée" onChange={this.handleArrivalCityChange} group type="text" validate required />
+                <MDBInput label="Compagnie" onChange={this.handleCompanyChange} group type="text" validate required />
+                <MDBInput type="textarea" onChange={this.handleDescriptionChange} label="Description de votre annonce" rows="5" required />
                 {/* <MDBBtn type="button" color='light-blue'>Enregistrer en tant que brouillon</MDBBtn> */}
                 <MDBBtn type="submit" color='light-blue'>
                   Mettre en ligne

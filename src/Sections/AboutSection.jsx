@@ -7,15 +7,15 @@ const AboutSection = () => {
       <MDBRow>
         <MDBCol md="4">
           <p><strong>Solidaire</strong></p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse convallis accumsan consequat. Vivamus hendrerit, lectus vel suscipit elementum, ipsum turpis dictum tellus, id varius orci odio at nunc. Phasellus molestie sem nec nunc laoreet vulputate.
+           L’Ile de la Réunion, c’est malheureusement de nombreux chiens et chats maltraités ou abandonnés errant en meutes dans les rues des différentes villes. Peu d’adoptions sont effectuées sur place, alors que la demande est plus importante sur le continent.
         </MDBCol>
         <MDBCol md="4">
           <p><strong>Facile</strong></p>
-          Quisque purus dolor, pharetra sed sem pharetra, consectetur viverra metus. Nulla facilisi. Etiam dapibus risus quis consequat placerat. Fusce hendrerit, augue a dictum mattis, mi magna fringilla nunc, id sagittis arcu diam cursus massa.
+          Le voyageur ne s’occupe de rien ! Un responsable achemine le chien ou le chat jusqu’à l’aéroport et gère l’enregistrement auprès de la compagnie du voyageur. Les compagnies aériennes implantées localement enregistrent régulièrement des animaux rapatriés, certaines proposant des tarifs réduits aux associations.
         </MDBCol>
         <MDBCol md="4">
           <p><strong>Gratuit</strong></p>
-          Donec a lorem nisl. Pellentesque pharetra ac sem eget pulvinar. Integer varius porttitor ipsum ac iaculis. Proin aliquam tellus ac sapien facilisis, at maximus quam ullamcorper. Nunc laoreet lorem eget nibh gravida cursus.
+          Faire voyager un chien ou un chat vers la Métropole ne coûtera rien pour le voyageur, leur enregistrement au départ étant pris entièrement en charge par l’association qui en est responsable. Le voyage du chien ou du chat se fait dans des conditions conformes au voyage avec des papiers en règle et une cage appropriée pour l’animal.
         </MDBCol>
       </MDBRow>
     </MDBContainer>

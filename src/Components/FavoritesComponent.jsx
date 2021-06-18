@@ -4,12 +4,12 @@ import { MDBCard, MDBCardBody, MDBCol, MDBIcon, MDBRow, MDBDataTable, MDBTable, 
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export default class NotificationsCardComponent extends Component {
+export default class FavoritesCardComponent extends Component {
 
   constructor() {
     super()
     this.state = {
-      notifications: [],
+      favorites: [],
     };
   };
 
@@ -20,9 +20,9 @@ export default class NotificationsCardComponent extends Component {
           'API-TOKEN': localStorage.getItem('token')
         }
       }
-      axios.get('https://api.animal-airline.com/public/api/notifications', headers)
+      axios.get('https://api.animal-airline.com/public/api/favorites', headers)
         .then(res => {
-          this.setState({ notifications: res.data })
+          this.setState({ favorites: res.data })
         }).catch(error => {
           console.log(error);
         });
@@ -32,18 +32,18 @@ export default class NotificationsCardComponent extends Component {
   }
 
   handleDeleteNotif = (id, event) => {
-    axios.delete(`https://api.animal-airline.com/public/api/notifications/delete/${id}`)
+    axios.delete(`https://api.animal-airline.com/public/api/favorites/delete/${id}`)
       .then(res => {
         console.log(res);
         console.log(res.data);
 
-        const notifications = this.state.notifications.filter(item => item.id !== id);
-        this.setState({ notifications });
+        const favorites = this.state.favorites.filter(item => item.id !== id);
+        this.setState({ favorites });
       })
   }
 
   render() {
-    console.log(this.state.notifications)
+    console.log(this.state.favorites)
     return (
       <div>
         <MDBRow className="mb-4">
@@ -53,17 +53,17 @@ export default class NotificationsCardComponent extends Component {
                 <MDBTable hover>
                   <MDBTableHead color="orange lighten-4">
                     <tr>
-                      <th>Notification</th>
+                      <th>Vos favoris</th>
                       <th className="text-center">Actions</th>
                     </tr>
                   </MDBTableHead>
                   <MDBTableBody>
-                    {this.state.notifications && this.state.notifications.length && this.state.notifications.map((notification) =>
-                      <tr key={notification.id}>
-                        <td><p className="p-3">L'utilisateur n°{JSON.parse(notification.data).user_id} a mis votre annonce {JSON.parse(notification.data).ad_id} dans ses favoris</p></td>
+                    {this.state.favorites && this.state.favorites.length && this.state.favorites.map((favorite) =>
+                      <tr key={favorite.id}>
+                        <td>{this.state.favorite.ad_id}</td>
                         <td>
                           <div className="d-flex justify-content-center">
-                            <Link className="p-3 col-example text-left" onClick={(event) => this.handleDeleteNotif(notification.id, event)}><MDBIcon icon="check" /></Link>
+                            <Link className="p-3 col-example text-left" onClick={(event) => this.handleDeleteNotif(favorite.id, event)}><MDBIcon icon="check" /></Link>
                           </div>
                         </td>
                       </tr>

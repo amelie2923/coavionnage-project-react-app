@@ -27,7 +27,7 @@ export default class ForgotPasswordFormComponent extends Component {
     let bodyFormData = new FormData();
     bodyFormData.set('email', this.state.email);
 
-    axios.post('http://127.0.0.1:8000/api/password/forgot-password', bodyFormData)
+    axios.post('https://api.animal-airline.com/public/api/password/forgot-password', bodyFormData)
       .then(res => {
         console.log(res.data)
         this.setState({ redirect: true })
@@ -52,7 +52,7 @@ export default class ForgotPasswordFormComponent extends Component {
             className='d-flex justify-content-center align-items-center'>
             <MDBCol md="6">
               <MDBCard>
-                <div className="header pt-3 blue-gradient">
+                <div className="header pt-3 peach-gradient">
                   <MDBRow className="d-flex justify-content-center">
                     <h3 className="white-text mb-3 pt-3 font-weight-bold">
                       Mot de passe oublié
@@ -74,7 +74,11 @@ export default class ForgotPasswordFormComponent extends Component {
                       />
                     </div>
                     <div className="text-center py-4 mt-3">
-                      <MDBBtn color="light-blue" type="submit">
+                      <MDBBtn
+                        type="submit"
+                        gradient="peach"
+                        className="btn-block z-depth-1a"
+                      >
                         Réinitialiser
                         </MDBBtn>
                     </div>

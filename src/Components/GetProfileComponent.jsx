@@ -25,7 +25,7 @@ export default class GetProfileComponent extends Component {
         }
       }
 
-      axios.get(`http://127.0.0.1:8000/api/users/profile`, headers)
+      axios.get(`https://api.animal-airline.com/public/api/users/profile`, headers)
         .then(res => {
           this.setState({ user: res.data })
         })

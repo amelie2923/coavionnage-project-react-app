@@ -13,13 +13,13 @@ export default class AdsGalleryComponent extends Component {
     super()
     this.state = {
       ads: [],
-      redirect: true,
+      // redirect: true,
       // latestAds: []
     };
   };
 
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/api/ads')
+    axios.get('https://api.animal-airline.com/public/api/ads')
       .then(res => {
         this.setState({ ads: res.data })
         console.log(res.data)
@@ -28,7 +28,7 @@ export default class AdsGalleryComponent extends Component {
         console.log(error.response)
       })
 
-    // axios.get('http://127.0.0.1:8000/api/ads/latest')
+    // axios.get('https://api.animal-airline.com/public/api/ads/latest')
     //   .then(res => {
     //     this.setState({ latestAds: res.data })
     //     console.log(res)
@@ -37,18 +37,6 @@ export default class AdsGalleryComponent extends Component {
     //     console.log(error.response)
     //   })
   }
-
-  // redirectHandler = () => {
-  //   if (localStorage.getItem('token')) {
-  //     this.setState({ redirect: false })
-  //     this.renderRedirect();
-  //   }
-  // }
-  // renderRedirect = () => {
-  //   if (this.state.redirect) {
-  //     return <Redirect to='/login' />
-  //   }
-  // }
 
   render() {
     console.log(this.state.ads)
@@ -65,7 +53,7 @@ export default class AdsGalleryComponent extends Component {
                     hover
                     overlay='white-slight'
                     className='card-img-top'
-                    src={`http://127.0.0.1:8000/storage/pictures/${ad.image}`}
+                    src={`https://api.animal-airline.com/public/public/pictures/${ad.image}`}
                     alt='animal image'
                   />
                 </MDBView>
@@ -85,8 +73,8 @@ export default class AdsGalleryComponent extends Component {
                     </MDBCardText>
                   </MDBCardTitle>
                   <p className="text-center">
-                    {/* <Link onClick={this.redirectHandler} className="btn primary" to={`/ads/${ad.id}`}>Je l'aide</Link> */}
-                    <Link onClick={this.redirectHandler} className="btn primary">Je l'aide</Link>
+                    <Link className="btn primary" to={`/ads/${ad.id}`}>Je l'aide</Link>
+                    {/* <MDBBtn className="btn primary" onClick={this.routeChange}>Je l'aide</MDBBtn> */}
                   </p>
                 </MDBCardBody>
               </MDBCard>

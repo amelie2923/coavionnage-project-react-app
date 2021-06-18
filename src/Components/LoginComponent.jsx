@@ -12,7 +12,7 @@ export default class LoginComponent extends Component {
       email: '',
       password: '',
       redirect: false,
-      errors: [],
+      // errors: [],
     };
   };
 
@@ -46,7 +46,7 @@ export default class LoginComponent extends Component {
       'Content-Type': 'application/json',
     }
 
-    axios.post('http://127.0.0.1:8000/api/login', bodyFormData, {
+    axios.post('https://api.animal-airline.com/public/api/login', bodyFormData, {
       headers: headers
     })
       .then(res => {
@@ -72,24 +72,17 @@ export default class LoginComponent extends Component {
     console.log(this.state.errors);
     return (
       <MDBContainer>
-        <MDBRow style={{ height: '100%', width: '100%', paddingTop: '5rem' }}
+        {/* <MDBRow style={{ height: '100%', width: '100%' }} */}
+        <MDBRow style={{ height: '100%', width: '100%', marginTop: '5rem', marginLeft: 'auto', marginRight: 'auto', }}
           className='d-flex justify-content-center align-items-center'>
-          <MDBCol md="6">
-            <MDBCard>
+          <MDBCol md="8">
+            <MDBCard className="mx-auto my-auto">
               <div className="header pt-3 peach-gradient">
                 <MDBRow className="d-flex justify-content-center">
                   <h3 className="white-text mb-3 pt-3 font-weight-bold">
                     Connexion
                 </h3>
                 </MDBRow>
-                {/* <MDBRow className="mt-2 mb-3 d-flex justify-content-center">
-                  <a href="#!" className="fa-lg p-2 m-2 fb-ic">
-                    <MDBIcon fab icon="facebook-f" size="lg" className="white-text" />
-                  </a>
-                  <a href="http://127.0.0.1:8000/auth/redirect/google" className="fa-lg p-2 m-2 gplus-ic">
-                    <MDBIcon fab icon="google" size="lg" className="white-text" />
-                  </a>
-                </MDBRow> */}
               </div>
               <MDBCardBody>
                 <form method="POST" onSubmit={this.handleSubmit}>
@@ -103,10 +96,8 @@ export default class LoginComponent extends Component {
                       error="wrong"
                       success="right"
                       onChange={this.handleEmailChange}
-                      className={`form-control ${this.state.errors && this.state.errors.email ? "is-invalid" : ''}`}
+                      required
                     />
-                    {this.state.errors && this.state.errors.email ? <div class="text-danger invalid-feedback"></div> : ''}
-                    {/* {this.state.errors && this.state.errors.email ? <div class="text-danger invalid-feedback">{this.state.errors['email']}</div> : ''} */}
                     <MDBInput
                       label="Votre mot de passe"
                       icon="lock"
@@ -114,12 +105,8 @@ export default class LoginComponent extends Component {
                       type="password"
                       validate
                       onChange={this.handlePasswordChange}
-                      className={`form-control ${this.state.errors && this.state.errors.password ? "is-invalid" : ''}`}
+                      required
                     />
-                    {this.state.errors && this.state.errors.password ? <div className="text-danger invalid-feedback"></div> : ''}
-                    {/* <MDBLink to='/forgot-password'>
-                      Mot de passe oublié ?
-                    </MDBLink> */}
                   </div>
                   <div className="text-center py-4 mt-3">
                     {/* <MDBBtn color="light-blue" type="submit">
@@ -144,15 +131,15 @@ export default class LoginComponent extends Component {
               </p>
               <div className="row my-3 d-flex justify-content-center">
                 {/* <MDBBtn
-                  href="http://127.0.0.1:8000/auth/redirect/facebook"
+                  href="https://api.animal-airline.com/public/auth/redirect/facebook"
                   type="button"
                   color="white"
                   className="mr-md-3 z-depth-1a"
                 >
                   <MDBIcon fab icon="facebook-f" className="blue-text text-center" />
                 </MDBBtn> */}
-                <a href="http://127.0.0.1:8000/auth/redirect/google" className="social-icons"><MDBIcon fab icon="facebook" /></a>
-                <a href="http://127.0.0.1:8000/auth/redirect/google" className="social-icons align-middle"><MDBIcon fab icon="google" /></a>
+                <a href="https://api.animal-airline.com/public/auth/redirect/google" className="social-icons"><MDBIcon fab icon="facebook" /></a>
+                <a href="https://api.animal-airline.com/public/auth/redirect/google" className="social-icons align-middle"><MDBIcon fab icon="google" /></a>
               </div>
               <MDBModalFooter className="mx-5 pt-3 mb-1">
                 <p className="font-small grey-text d-flex justify-content-end">
@@ -168,6 +155,7 @@ export default class LoginComponent extends Component {
             </MDBCard>
           </MDBCol>
         </MDBRow>
+        {/* </MDBRow> */}
       </MDBContainer >
     )
   }

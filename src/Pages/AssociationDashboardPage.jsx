@@ -13,7 +13,7 @@ const AssociationDashboardPage = () => {
       <main id="content" className="p-5">
         <h2>Mes annonces</h2>
         <TableAssoComponent />
-        <NotificationsCardComponent />
+        {/* <NotificationsCardComponent /> */}
         {/* <AdsGalleryComponent /> */}
       </main>
       {/* <AdminCardSection1 />

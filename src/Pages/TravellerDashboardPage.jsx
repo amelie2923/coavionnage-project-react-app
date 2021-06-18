@@ -14,7 +14,7 @@ const TravellerDashboardPage = () => {
         <h2>Mes annonces</h2>
         {/* <TableAssoComponent /> */}
         <TableTravellerComponent />
-        <NotificationsCardComponent />
+        {/* <NotificationsCardComponent /> */}
         {/* <AdsGalleryComponent /> */}
       </main>
       {/* <AdminCardSection1 />
